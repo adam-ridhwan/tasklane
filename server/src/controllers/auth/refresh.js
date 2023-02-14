@@ -6,9 +6,10 @@ import catchAsync from '../../utils/catchAsync.js';
 import sendResponse from '../../utils/sendResponse.js';
 
 const refresh = catchAsync(async (req, res, next) => {
-  const refreshToken = req.headers.cookie.split('=')[1];
+  const refreshToken = req.headers.cookie?.split('=')[1];
   if (!refreshToken) {
-    return next(new AppError('You are not logged in!', 401));
+    return;
+    // return next(new AppError('You are not logged in!', 401));
   }
 
   const decoded = await promisify(jwt.verify)(
@@ -21,7 +22,7 @@ const refresh = catchAsync(async (req, res, next) => {
       new AppError('User belonging to this token no longer exists', 401)
     );
 
-  // 2) Check if user exists && password is correct
+  // 2) Check if user exists
   const user = await User.findOne({ _id: decoded.id });
   if (!user) {
     return next(new AppError('User not found', 401));
@@ -30,7 +31,7 @@ const refresh = catchAsync(async (req, res, next) => {
   const accessToken = jwt.sign(
     { id: user._id },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: 900 }
+    { expiresIn: 5 }
   );
 
   sendResponse(res, 200, accessToken);

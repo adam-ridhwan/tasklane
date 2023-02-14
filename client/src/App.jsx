@@ -1,12 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Dashboard from './components/Dashboard.jsx';
+import Home from './components/Home.jsx';
+import { AuthContext } from './context/authContext.jsx';
 import Login from './controllers/auth/login.jsx';
+
+import refresh from './controllers/auth/refresh';
 
 const App = () => {
   return (
-    <div className='App'>
-      <Login />
-    </div>
+    <>
+      <div className='App'>
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/dashboard' element={<Dashboard />}></Route>
+        </Routes>
+      </div>
+    </>
   );
 };
 

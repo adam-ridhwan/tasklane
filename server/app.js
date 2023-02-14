@@ -5,6 +5,7 @@ import express from 'express';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
+import jwt from 'jsonwebtoken';
 import morgan from 'morgan';
 import xss from 'xss-clean';
 
@@ -17,14 +18,16 @@ dotenv.config({ path: './config.env' });
 
 const app = express();
 
+// Cookie parser
+app.use(cookieParser());
+
 app.use(function (req, res, next) {
-  console.log(req.headers.origin);
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Origin', req.headers.origin);
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
+  // res.header(
+  //   'Access-Control-Allow-Headers',
+  //   'Origin, X-Requested-With, Content-Type, Accept'
+  // );
   next();
 });
 
@@ -40,12 +43,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Limit request from all API
-const limiter = rateLimit({
-  max: 100,
-  windowMs: 60 * 60 * 1000, // 1 hour
-  message: 'Too many requests from this IP, please try again in an hour!',
-});
-app.use('/api', limiter);
+// const limiter = rateLimit({
+//   max: 100,
+//   windowMs: 60 * 60 * 1000, // 1 hour
+//   message: 'Too many requests from this IP, please try again in an hour!',
+// });
+// app.use('/api', limiter);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
@@ -55,9 +58,6 @@ app.use(mongoSanitize()); // rejects $ and . from req.body
 
 // Data sanitization against XSS
 app.use(xss()); // removes html tags from req.body
-
-// Cookie parser
-app.use(cookieParser());
 
 // ROUTES
 app.use('/api/v1/users', userRouter);

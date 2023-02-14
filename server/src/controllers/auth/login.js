@@ -24,7 +24,7 @@ const login = catchAsync(async (req, res, next) => {
   const accessToken = jwt.sign(
     { id: user._id },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: 900 }
+    { expiresIn: 5 }
   );
 
   const refreshToken = jwt.sign(

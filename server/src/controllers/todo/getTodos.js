@@ -4,6 +4,7 @@ import catchAsync from '../../utils/catchAsync.js';
 
 const getTodos = catchAsync(async (req, res, next) => {
   const user = req.user;
+
   if (!user) return next(new AppError('User not found', 401));
 
   const { todos } = await Todos.findOne({ userID: user.id });

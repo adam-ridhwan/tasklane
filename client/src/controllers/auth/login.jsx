@@ -1,13 +1,20 @@
-import { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/authContext.jsx';
 
 const Login = () => {
-  const [accessToken, setAccessToken] = useState();
+  const navigate = useNavigate();
+
+  const { accessToken, setAccessToken } = useContext(AuthContext);
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const loginHandler = async e => {
     e.preventDefault();
-    const response = await fetch('http://127.0.0.1:8000/api/v1/users/login', {
+    // cookies only allowed on localhost
+    const response = await fetch('http://localhost:8000/api/v1/users/login', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -20,47 +27,46 @@ const Login = () => {
         password: 'password',
       }),
     });
-    const data = await response.json({});
-    console.log(data);
+    const data = await response.json();
     setAccessToken(data.accessToken);
   };
 
   useEffect(() => {
-    // console.log(document.cookie);
-  });
+    if (accessToken) {
+      navigate('/dashboard');
+    }
+  }, [accessToken]);
+
+  console.log('accessToken', accessToken);
 
   return (
     <>
-      {accessToken ? (
-        <div>Logged in</div>
-      ) : (
-        <div className='App'>
-          <form onSubmit={loginHandler}>
-            <div>
-              <label htmlFor='email'>Email:</label>
-              <input
-                type='email'
-                id='email'
-                name='email'
-                onChange={e => setEmail(e.target.value)}
-              />
-            </div>
+      <div className='App'>
+        <form onSubmit={loginHandler}>
+          <div>
+            <label htmlFor='email'>Email:</label>
+            <input
+              type='email'
+              id='email'
+              name='email'
+              onChange={e => setEmail(e.target.value)}
+            />
+          </div>
 
-            <div>
-              <label htmlFor='password'>Password:</label>
-              <input
-                type='password'
-                id='password'
-                name='password'
-                autoComplete='off'
-                onChange={e => setPassword(e.target.value)}
-              />
-            </div>
+          <div>
+            <label htmlFor='password'>Password:</label>
+            <input
+              type='password'
+              id='password'
+              name='password'
+              autoComplete='off'
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
 
-            <button type='submit'>Login</button>
-          </form>
-        </div>
-      )}
+          <button type='submit'>Login</button>
+        </form>
+      </div>
     </>
   );
 };
