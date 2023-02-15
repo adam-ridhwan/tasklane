@@ -37,8 +37,6 @@ const Login = () => {
     }
   }, [accessToken]);
 
-  console.log('accessToken', accessToken);
-
   return (
     <>
       <div className='App'>

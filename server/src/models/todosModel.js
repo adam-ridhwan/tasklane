@@ -8,7 +8,7 @@ const todosSchema = new mongoose.Schema({
   },
   todos: [
     {
-      event: String,
+      event: { type: String, default: '' },
       finished: { type: Boolean, default: false },
     },
   ],

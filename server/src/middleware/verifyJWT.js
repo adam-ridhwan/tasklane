@@ -14,8 +14,8 @@ const verifyJWT = catchAsync(async (req, res, next) => {
   }
 
   const accessToken = authorization.split(' ')[1];
-  // console.log('accesstoken', accessToken);
   if (accessToken === 'null') {
+    console.log('accesstoken is null error catcher');
     return next(new AppError('Access token not found.', 401));
   }
 

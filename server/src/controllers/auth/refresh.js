@@ -8,8 +8,7 @@ import sendResponse from '../../utils/sendResponse.js';
 const refresh = catchAsync(async (req, res, next) => {
   const refreshToken = req.headers.cookie?.split('=')[1];
   if (!refreshToken) {
-    return;
-    // return next(new AppError('You are not logged in!', 401));
+    return next(new AppError('You are not logged in!', 401));
   }
 
   const decoded = await promisify(jwt.verify)(
