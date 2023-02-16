@@ -1,9 +1,8 @@
-import { useContext, useEffect, useLayoutEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Dashboard from './components/Dashboard.jsx';
 import Home from './components/Home.jsx';
-import { AuthContext } from './context/authContext.jsx';
+
 import Login from './controllers/auth/login.jsx';
 
 const App = () => {

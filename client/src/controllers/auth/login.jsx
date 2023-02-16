@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext.jsx';
 
@@ -8,10 +7,11 @@ const Login = () => {
 
   const { accessToken, setAccessToken } = useContext(AuthContext);
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('adam@gmail.com');
+  const [password, setPassword] = useState('asdf');
 
   const loginHandler = async e => {
+    console.log('loginHandler', email, password);
     e.preventDefault();
     // cookies only allowed on localhost
     const response = await fetch('http://localhost:8000/api/v1/users/login', {
@@ -21,13 +21,12 @@ const Login = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        // email: `${email}`,
-        // password: `${password}`,
-        email: 'adam@gmail.com',
-        password: 'password',
+        email: `${email}`,
+        password: `${password}`,
       }),
     });
     const data = await response.json();
+    console.log(data);
     setAccessToken(data.accessToken);
   };
 

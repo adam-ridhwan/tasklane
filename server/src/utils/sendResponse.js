@@ -1,7 +1,7 @@
-const sendResponse = (res, statusCode, accessToken) => {
+const sendResponse = (res, statusCode, accessToken, expiresIn) => {
   res.status(statusCode).json({
-    status: 'success',
     accessToken,
+    expiresIn,
   });
 };
 

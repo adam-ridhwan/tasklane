@@ -7,6 +7,7 @@ import setCookie from '../../utils/setCookie.js';
 
 const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
+  console.log(email, password);
 
   // 1) Check if email and password exist
   if (!email || !password) {
@@ -33,8 +34,10 @@ const login = catchAsync(async (req, res, next) => {
     { expiresIn: '1d' }
   );
 
+  const currentDate = new Date();
+
   setCookie(refreshToken, res);
-  sendResponse(res, 200, accessToken);
+  sendResponse(res, 200, accessToken, currentDate);
 });
 
 export default login;
