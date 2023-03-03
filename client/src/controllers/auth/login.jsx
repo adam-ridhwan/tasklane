@@ -6,9 +6,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { accessToken, setAccessToken } = useContext(AuthContext);
-
-  const [email, setEmail] = useState('adam@gmail.com');
-  const [password, setPassword] = useState('asdf');
+  const [userInfo, setUserInfo] = useState({ email: '', password: '' });
+  const [error, setError] = useState(false);
 
   const loginHandler = async e => {
     console.log('loginHandler', email, password);
@@ -20,49 +19,60 @@ const Login = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        email: `${email}`,
-        password: `${password}`,
-      }),
+      body: JSON.stringify(userInfo),
     });
     const data = await response.json();
-    console.log(data);
+
+    if (response.status !== 200) {
+      return setError(data.message);
+    }
+
     setAccessToken(data.accessToken);
+    navigate('/dashboard');
   };
 
-  useEffect(() => {
-    if (accessToken) {
-      navigate('/dashboard');
-    }
-  }, [accessToken]);
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+
+    setUserInfo({
+      ...userInfo,
+      [name]: value,
+    });
+  };
 
   return (
     <>
       <div className='App'>
-        <form onSubmit={loginHandler}>
+        <form onSubmit={e => loginHandler(e)}>
           <div>
-            <label htmlFor='email'>Email:</label>
+            <label htmlFor='email'>Email</label>
             <input
               type='email'
               id='email'
               name='email'
-              onChange={e => setEmail(e.target.value)}
+              onChange={handleInputChange}
             />
           </div>
 
           <div>
-            <label htmlFor='password'>Password:</label>
+            <label htmlFor='password'>Password</label>
             <input
               type='password'
               id='password'
               name='password'
               autoComplete='off'
-              onChange={e => setPassword(e.target.value)}
+              onChange={handleInputChange}
             />
           </div>
 
           <button type='submit'>Login</button>
         </form>
+
+        {error && (
+          <div>
+            <p>{error}</p>
+          </div>
+        )}
       </div>
     </>
   );
