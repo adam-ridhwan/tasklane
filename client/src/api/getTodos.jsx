@@ -1,7 +1,7 @@
-import { useEffect, useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/authContext.jsx';
-import verifyJWTExpiration from '../auth/VerifyJWTExpiration.jsx';
+import { AuthContext } from '../context/authContext.jsx';
+import verifyJWTExpiration from '../utils/verifyJWTExp.jsx';
 
 const getTodos = () => {
   const navigate = useNavigate();

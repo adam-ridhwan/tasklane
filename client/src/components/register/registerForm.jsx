@@ -58,6 +58,18 @@ const Register = () => {
       return setInputsHaveNullValues(true);
     }
 
+    if (!EmailValidator.validate(email)) {
+      return;
+    }
+
+    if (password !== passwordConfirm) {
+      return;
+    }
+
+    if (passwordStrength < 4) {
+      return;
+    }
+
     const response = await fetch('http://localhost:8000/api/v1/users/signup', {
       method: 'POST',
       credentials: 'include',
@@ -185,10 +197,10 @@ const Register = () => {
               }}
             />
 
-            {passwordInputHasData && (
+            {passwordInputHasData && passwordStrength < 5 && (
               <div>
-                {passwordStrength < 5 &&
-                  'Must be 8 characters or more, needs at least 1 uppercase, 1 lowercase, 1 number, and 1 special character.'}
+                Must be 8 characters or more, needs at least 1 uppercase, 1
+                lowercase, 1 number, and 1 special character.
               </div>
             )}
 

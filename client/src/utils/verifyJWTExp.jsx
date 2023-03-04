@@ -1,5 +1,5 @@
 import jwt_decode from 'jwt-decode';
-import refresh from './Refresh.jsx';
+import refresh from './refreshToken.jsx';
 
 const verifyJWTExpiration = async (accessToken, setAccessToken) => {
   let token = accessToken;

@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/authContext.jsx';
-import Logout from '../controllers/auth/Logout.jsx';
-import verifyJWTExpiration from '../controllers/auth/VerifyJWTExpiration.jsx';
-import getTodos from '../controllers/todos/getTodos.jsx';
+import getTodos from '../../api/getTodos.jsx';
+import Logout from '../../components/logout/logout.jsx';
+import { AuthContext } from '../../context/authContext.jsx';
+import verifyJWTExpiration from '../../utils/verifyJWTExp.jsx';
 
 const Dashboard = () => {
   const { accessToken, setAccessToken } = useContext(AuthContext);
