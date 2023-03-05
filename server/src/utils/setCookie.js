@@ -1,4 +1,4 @@
-const setCookie = (refreshToken, res) => {
+const setCookie = (res, refreshToken) => {
   const cookieOptions = {
     expires: new Date(Date.now() + 86400000), // 1 day in milliseconds
     httpOnly: true,

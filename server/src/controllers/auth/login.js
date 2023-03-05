@@ -24,7 +24,7 @@ const login = catchAsync(async (req, res, next) => {
   const accessToken = jwt.sign(
     { id: user._id },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: 5 }
+    { expiresIn: '10s' }
   );
 
   const refreshToken = jwt.sign(
@@ -33,10 +33,8 @@ const login = catchAsync(async (req, res, next) => {
     { expiresIn: '1d' }
   );
 
-  const currentDate = new Date();
-
-  setCookie(refreshToken, res);
-  sendResponse(res, 200, accessToken, currentDate);
+  setCookie(res, refreshToken);
+  sendResponse(res, 200, accessToken);
 });
 
 export default login;

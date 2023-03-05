@@ -1,5 +1,5 @@
 import jwt_decode from 'jwt-decode';
-import refresh from './refreshToken.jsx';
+import refreshToken from './refreshToken.jsx';
 
 const verifyJWTExpiration = async (accessToken, setAccessToken) => {
   let token = accessToken;
@@ -8,8 +8,8 @@ const verifyJWTExpiration = async (accessToken, setAccessToken) => {
   const decodedToken = token ? jwt_decode(token) : null;
 
   if (!decodedToken || decodedToken.exp * 1000 < currentDate.getTime()) {
-    token = await refresh();
-    setAccessToken(null);
+    token = await refreshToken();
+    setAccessToken(token);
   }
 
   return token;

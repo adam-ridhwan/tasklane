@@ -46,7 +46,7 @@ const register = catchAsync(async (req, res, next) => {
     { expiresIn: '1d' }
   );
 
-  setCookie(refreshToken, res);
+  setCookie(res, refreshToken);
   sendResponse(res, 200, accessToken);
 });
 

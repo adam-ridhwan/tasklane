@@ -9,13 +9,11 @@ dotenv.config({ path: './config.env' });
 const verifyJWT = catchAsync(async (req, res, next) => {
   const authorization = req.headers.authorization;
   if (!authorization) {
-    console.log('authorization error catcher');
     return next(new AppError('No authorization header', 401));
   }
 
   const accessToken = authorization.split(' ')[1];
   if (accessToken === 'null') {
-    console.log('accesstoken is null error catcher');
     return next(new AppError('Access token not found.', 401));
   }
 
@@ -27,7 +25,6 @@ const verifyJWT = catchAsync(async (req, res, next) => {
     );
   } catch (err) {
     if (err.message === 'jwt expired') {
-      console.log('jwt expired error catcher');
       return next(new AppError('Access token expired', 401));
     }
   }
