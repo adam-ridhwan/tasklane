@@ -11,7 +11,7 @@ const GetTodos = () => {
   const { setTodos } = useContext(TodosContext);
 
   useEffect(() => {
-    const fetchTodos = async () => {
+    const fetchTodoHandler = async () => {
       const token = await verifyJWTExpiration(accessToken, setAccessToken);
       if (!token) return navigate('/login');
 
@@ -26,7 +26,7 @@ const GetTodos = () => {
       const { todos } = await response.json();
       setTodos(todos);
     };
-    fetchTodos();
+    fetchTodoHandler();
   }, []);
 };
 export default GetTodos;

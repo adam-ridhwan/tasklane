@@ -4,9 +4,9 @@ import catchAsync from '../../utils/catchAsync.js';
 
 const updateTodo = catchAsync(async (req, res, next) => {
   const user = req.user;
-  const { todoID, event } = req.body;
-
   if (!user) return next(new AppError('User not found', 401));
+
+  const { todoID, event } = req.body;
   if (!todoID || !event) return next(new AppError('Todos not found', 401));
 
   const filter = { userID: user.id, 'todos._id': todoID };
