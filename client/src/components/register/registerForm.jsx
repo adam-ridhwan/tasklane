@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const { setAccessToken } = useContext(AuthContext);
 
   const [
@@ -55,21 +57,18 @@ const Register = () => {
     }).includes('');
 
     if (hasEmptyFields) {
-      return setInputsHaveNullValues(true);
+      setInputsHaveNullValues(true);
     }
 
-    if (!EmailValidator.validate(email)) {
-      return;
+    if (
+      !EmailValidator.validate(email) ||
+      password !== passwordConfirm ||
+      passwordStrength < 4
+    ) {
+      return setError('Please complete all required fields');
     }
 
-    if (password !== passwordConfirm) {
-      return;
-    }
-
-    if (passwordStrength < 4) {
-      return;
-    }
-
+    // FETCH DATA
     const response = await fetch('http://localhost:8000/api/v1/users/signup', {
       method: 'POST',
       credentials: 'include',
@@ -90,7 +89,7 @@ const Register = () => {
     }
 
     setAccessToken(data.accessToken);
-    // navigate('/dashboard');
+    navigate('/dashboard');
   };
 
   const handleInputChange = event => {

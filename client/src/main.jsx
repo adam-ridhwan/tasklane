@@ -5,13 +5,16 @@ import App from './App';
 import './index.css';
 
 import { AuthProvider } from './context/authContext.jsx';
+import { TodosProvider } from './context/todoContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <TodosProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </TodosProvider>
     </AuthProvider>
   </React.StrictMode>
 );

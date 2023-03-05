@@ -13,9 +13,11 @@ const createTodo = catchAsync(async (req, res) => {
   const update = { $push: { todos: newTodo } };
   const options = { new: true }; // return document after update
 
-  await Todos.findOneAndUpdate(filter, update, options);
+  const { todos } = await Todos.findOneAndUpdate(filter, update, options);
 
-  res.sendStatus(204);
+  res.status(200).json({
+    newTodo: todos.slice(-1),
+  });
 });
 
 export default createTodo;

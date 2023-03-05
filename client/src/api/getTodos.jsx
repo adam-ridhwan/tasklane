@@ -1,12 +1,14 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authContext.jsx';
+import { TodosContext } from '../context/todoContext.jsx';
 import verifyJWTExpiration from '../utils/verifyJWTExp.jsx';
 
-const getTodos = () => {
+const GetTodos = () => {
   const navigate = useNavigate();
 
   const { accessToken, setAccessToken } = useContext(AuthContext);
+  const { setTodos } = useContext(TodosContext);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -22,15 +24,9 @@ const getTodos = () => {
       });
 
       const { todos } = await response.json();
-      console.log('todos', todos);
+      setTodos(todos);
     };
     fetchTodos();
   }, []);
-
-  return (
-    <>
-      <div></div>
-    </>
-  );
 };
-export default getTodos;
+export default GetTodos;

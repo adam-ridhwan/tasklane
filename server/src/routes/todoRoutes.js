@@ -1,4 +1,5 @@
 import express from 'express';
+import clearTodos from '../controllers/todo/clearTodos.js';
 import createTodo from '../controllers/todo/createTodo.js';
 import deleteTodo from '../controllers/todo/deleteTodo.js';
 import getTodos from '../controllers/todo/getTodos.js';
@@ -11,6 +12,7 @@ router
   .get(getTodos)
   .post(createTodo)
   .patch(updateTodo)
+  .put(clearTodos)
   .delete(deleteTodo);
 
 export default router;
