@@ -4,7 +4,7 @@ const TopBar = () => {
   return (
     <>
       <div className='topbar-container'>
-        <div>{Bars3Icon}</div>
+        <div className='Bars3Icon'>{Bars3Icon}</div>
 
         <div className='Avatar'>AR</div>
 
@@ -37,7 +37,7 @@ const TopBar = () => {
             <input className='' placeholder='Search' />
           </div>
 
-          <div>{PlusCricleIcon}</div>
+          <div className='PlusCircleIcon'>{PlusCricleIcon}</div>
         </div>
       </div>
 
@@ -70,9 +70,9 @@ const PlusCricleIcon = (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 24 24'
-    fill='orangered'
-    height='2rem'
-    width='2rem'
+    fill='#f06a6a'
+    height='32px'
+    width='32px'
   >
     <path
       fillRule='evenodd'
@@ -85,7 +85,7 @@ const PlusCricleIcon = (
 const LockClosedIcon = (
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    viewBox='0 0 26 26'
+    viewBox='0 0 28 28'
     fill='#6d6e6f'
     height='1rem'
     width='1rem'
@@ -101,10 +101,10 @@ const LockClosedIcon = (
 const MagnifyingGlassIcon = (
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    viewBox='0 0 25 25'
+    viewBox='0 0 26 26'
     fill='#6d6e6f'
-    height='1rem'
-    width='1rem'
+    height='1.1rem'
+    width='1.1rem'
   >
     <path
       fillRule='evenodd'
