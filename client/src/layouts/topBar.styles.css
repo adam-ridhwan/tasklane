@@ -1,0 +1,125 @@
+.topbar-container {
+  min-height: 72px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+}
+
+.Avatar {
+  background-color: aquamarine;
+  font-size: 16px;
+  height: 48px;
+  line-height: 48px;
+  min-width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 12px;
+}
+
+.TopBarPageHeaderStructure-titleAndNavMenuRow {
+  /* outline: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+  height: 72px;
+  width: 100%;
+}
+
+.TopBarPageHeaderStructure-title {
+  /* outline: 2px solid red; */
+  font-size: 20px;
+  line-height: 45px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.TabNavigation-list {
+  /* outline: 1px solid cyan; */
+  list-style-type: none;
+  display: flex;
+  height: 27px;
+  align-items: center;
+}
+
+.TabNavigation-list li:not(:first-child) {
+  margin-left: 24px;
+  /* padding-bottom: 1px solid green; */
+}
+
+.TapNavigationBar-tab {
+  padding: 2.5px 0;
+  border-bottom: 2px solid black;
+}
+
+.ShareButton {
+  /* outline: 1px solid cyan; */
+
+  border: 1px solid #afabac;
+  background: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  border-radius: 6px;
+  padding: 0 10px;
+  width: 60px;
+  color: #1e1f21;
+}
+
+.ShareButton div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ShareButton p {
+  padding-left: 4px;
+}
+
+/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+
+.TopBarPageHeaderGlobalActions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.TopBarPageHeaderGlobalActions-input {
+  margin-left: 15px;
+  width: 140px;
+  border-radius: 16px;
+  border: 1px solid #afabac;
+  display: flex;
+  flex-direction: row;
+}
+
+.TopBarPageHeaderGlobalActions-input div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+.TopBarPageHeaderGlobalActions-input input {
+  border: none;
+  outline: none;
+  width: 100%;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.TopBarPageHeaderGlobalActions-input input::placeholder {
+  /* font-size: 12px; */
+}
+
+/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+
+.Topbar-borderOnly {
+  border-top: 1px solid #edeae9;
+  display: flex;
+  height: 0;
+}
