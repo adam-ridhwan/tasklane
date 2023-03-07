@@ -47,9 +47,7 @@ const TopBar = () => {
     globalActionsInputRef.current.style.border = '1px solid #cfcbcb';
   };
 
-  useEffect(() => {
-    // console.log(globalActionsInputRef.current === document.activeElement);
-  });
+  useEffect(() => {});
 
   return (
     <>
