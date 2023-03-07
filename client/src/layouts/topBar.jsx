@@ -27,10 +27,6 @@ const TopBar = () => {
     dispatch({ type: 'SET_ACTIVE_TAB', payload: tab });
   };
 
-  useEffect(() => {
-    console.log('state.activeTab', state.activeTab);
-  }, [state]);
-
   return (
     <>
       <div className='topbar-container'>
