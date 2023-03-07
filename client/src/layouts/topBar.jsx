@@ -1,6 +1,36 @@
+import { useEffect, useReducer } from 'react';
+import { useCookies } from 'react-cookie';
+
 import './topBar.styles.css';
 
 const TopBar = () => {
+  const [cookies, setCookie] = useCookies(['tab']);
+
+  setCookie('tab', 'LIST', { path: '/' });
+
+  const initialState = {
+    activeTab: 'LIST',
+  };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'SET_ACTIVE_TAB':
+        return { ...state, activeTab: action.payload };
+      default:
+        throw new Error();
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const tabClickHandler = tab => {
+    dispatch({ type: 'SET_ACTIVE_TAB', payload: tab });
+  };
+
+  useEffect(() => {
+    console.log('state.activeTab', state.activeTab);
+  }, [state]);
+
   return (
     <>
       <div className='topbar-container'>
@@ -13,14 +43,32 @@ const TopBar = () => {
 
           <div className='TopBarPageHeaderStructure-navMenuRow'>
             <ul className='TabNavigation-list'>
-              <li className='TapNavigationBar-tab'>
-                <span>List</span>
+              <li
+                className={`TabNavigationBar-tab
+                  ${
+                    state.activeTab === 'LIST' && 'TabNavigationBar-tab-active'
+                  }`}
+              >
+                <span onClick={() => tabClickHandler('LIST')}>List</span>
               </li>
-              <li className='TapNavigationBar-tab'>
-                <span>Board</span>
+              <li
+                className={`TabNavigationBar-tab
+                  ${
+                    state.activeTab === 'BOARD' && 'TabNavigationBar-tab-active'
+                  }`}
+              >
+                <span onClick={() => tabClickHandler('BOARD')}>Board</span>
               </li>
-              <li className='TapNavigationBar-tab'>
-                <span>Calendar</span>
+              <li
+                className={`TabNavigationBar-tab
+                  ${
+                    state.activeTab === 'CALENDAR' &&
+                    'TabNavigationBar-tab-active'
+                  }`}
+              >
+                <span onClick={() => tabClickHandler('CALENDAR')}>
+                  Calendar
+                </span>
               </li>
             </ul>
           </div>

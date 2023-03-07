@@ -6,13 +6,26 @@ import catchAsync from '../../utils/catchAsync.js';
 import sendResponse from '../../utils/sendResponse.js';
 
 const refresh = catchAsync(async (req, res, next) => {
-  const refreshToken = req.headers.cookie?.split('=')[1];
-  if (!refreshToken) {
+  const cookieList = {};
+
+  const cookieHeader = req.headers?.cookie;
+  if (!cookieHeader) return cookieList;
+
+  cookieHeader.split(';').forEach(cookie => {
+    let [name, ...rest] = cookie.split(`=`);
+    name = name?.trim();
+    if (!name) return;
+    const value = rest.join(`=`).trim();
+    if (!value) return;
+    cookieList[name] = decodeURIComponent(value);
+  });
+
+  if (!cookieList.jwt) {
     return next(new AppError('You are not logged in!', 401));
   }
 
   const decoded = await promisify(jwt.verify)(
-    refreshToken,
+    cookieList.jwt,
     process.env.REFRESH_TOKEN_SECRET
   );
 
