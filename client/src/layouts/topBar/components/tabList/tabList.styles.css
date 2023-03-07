@@ -1,0 +1,43 @@
+.TopBarPageHeaderStructure-titleAndNavMenuRow {
+  display: flex;
+  flex-direction: column;
+  height: 72px;
+  width: 100%;
+}
+
+.TopBarPageHeaderStructure-title {
+  margin-top: 8px;
+  line-height: 28px;
+}
+
+.TopBarPageHeaderStructure-title h1 {
+  font-size: 20px;
+  font-weight: 400;
+  width: fit-content;
+  height: fit-content;
+}
+
+.TabNavigation-list {
+  list-style-type: none;
+  display: flex;
+  height: 35px;
+  align-items: center;
+  color: #6d6e6f;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.TabNavigation-list li:not(:first-child) {
+  margin-left: 24px;
+}
+
+.TabNavigationBar-tab {
+  padding: 11px 0;
+  cursor: pointer;
+}
+
+.TabNavigationBar-tab-active {
+  box-shadow: inset 0 -2px #6d6e6f;
+  color: #1e1f21;
+}

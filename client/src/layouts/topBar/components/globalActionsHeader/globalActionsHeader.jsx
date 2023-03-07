@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import './globalActionsHeader.styles.css';
 
@@ -6,23 +6,35 @@ const GlobalActionsHeader = () => {
   const [isCreateNewHovered, setIsCreateNewHovered] = useState(false);
   const [isSettingsAvatarHovered, setIsSettingsAvatarHovered] = useState(false);
 
-  const expandInputWidthHandler = globalActionsInputRef => {
-    globalActionsInputRef.current.style.width = '480px';
-    globalActionsInputRef.current.style.border = '2px solid #3f6ac4';
+  const divRef = useRef(null);
+  const inputRef = useRef(null);
+
+  const expandInputWidthHandler = divRef => {
+    divRef.current.style.width = '480px';
+    divRef.current.style.border = '3px solid #3f6ac4';
   };
 
-  const shrinkInputWidthHandler = globalActionsInputRef => {
-    globalActionsInputRef.current.style.width = '140px';
-    globalActionsInputRef.current.style.border = '1px solid #cfcbcb';
+  const shrinkInputWidthHandler = divRef => {
+    divRef.current.style.width = '140px';
+    divRef.current.style.border = '1px solid #cfcbcb';
   };
 
-  const globalActionsInputRef = useRef(null);
+  const darkenBorderHandler = divRef => {
+    if (document.activeElement === inputRef.current) return;
+    divRef.current.style.border = '1px solid #afabac';
+  };
+
+  const lightenBorderHandler = divRef => {
+    if (document.activeElement === inputRef.current) return;
+    divRef.current.style.border = '1px solid #cfcbcb';
+  };
+
   return (
     <>
       <div className='TopBarPageHeaderGlobalActions'>
         <div className='TopBarPageHeaderGlobalActions-textInputBase'>
           <div
-            ref={globalActionsInputRef}
+            ref={divRef}
             className='TopBarPageHeaderGlobalActions-inputContainer'
           >
             <div className='TopBarPageHeaderGlobalActions-icon'>
@@ -30,9 +42,12 @@ const GlobalActionsHeader = () => {
             </div>
 
             <input
+              ref={inputRef}
               placeholder='Search'
-              onFocus={() => expandInputWidthHandler(globalActionsInputRef)}
-              onBlur={() => shrinkInputWidthHandler(globalActionsInputRef)}
+              onFocus={() => expandInputWidthHandler(divRef)}
+              onBlur={() => shrinkInputWidthHandler(divRef)}
+              onMouseEnter={() => darkenBorderHandler(divRef)}
+              onMouseLeave={() => lightenBorderHandler(divRef)}
             />
           </div>
         </div>

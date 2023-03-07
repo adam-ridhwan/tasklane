@@ -1,0 +1,25 @@
+.ShareButton {
+  /* outline: 1px solid cyan; */
+  border: 1px solid #cfcbcb;
+  background: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  border-radius: 6px;
+  padding: 0 8px;
+  color: #1e1f21;
+  font-weight: 100;
+  font-size: 14px;
+}
+
+.ShareButton div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ShareButton p {
+  padding-left: 2px;
+}

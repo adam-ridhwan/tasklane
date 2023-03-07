@@ -1,0 +1,14 @@
+.Bars3Icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 3px;
+  padding: 2.5px;
+  transition: background-color 0.15s ease-in-out;
+  cursor: pointer;
+}
+
+.Bars3Icon:hover {
+  background-color: #f8f8f8;
+}
