@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 import './topBar.styles.css';
@@ -14,6 +14,8 @@ const TopBar = () => {
   const [hoveredTab, setHoveredTab] = useState(null);
   const [isCreateNewHovered, setIsCreateNewHovered] = useState(false);
   const [isSettingsAvatarHovered, setIsSettingsAvatarHovered] = useState(false);
+
+  const globalActionsInputRef = useRef(null);
 
   const initialState = {
     activeTab: `${cookies.activeTab || 'list'}`,
@@ -34,6 +36,20 @@ const TopBar = () => {
     dispatch({ type: 'SET_ACTIVE_TAB', payload: tab });
     setCookie('activeTab', tab, { path: '/' });
   };
+
+  const expandInputWidthHandler = globalActionsInputRef => {
+    globalActionsInputRef.current.style.width = '480px';
+    globalActionsInputRef.current.style.border = '2px solid #3f6ac4';
+  };
+
+  const shrinkInputWidthHandler = globalActionsInputRef => {
+    globalActionsInputRef.current.style.width = '140px';
+    globalActionsInputRef.current.style.border = '1px solid #cfcbcb';
+  };
+
+  useEffect(() => {
+    // console.log(globalActionsInputRef.current === document.activeElement);
+  });
 
   return (
     <>
@@ -73,9 +89,21 @@ const TopBar = () => {
         </div>
 
         <div className='TopBarPageHeaderGlobalActions'>
-          <div className='TopBarPageHeaderGlobalActions-input'>
-            <div>{MagnifyingGlassIcon}</div>
-            <input className='' placeholder='Search' />
+          <div className='TopBarPageHeaderGlobalActions-textInputBase'>
+            <div
+              ref={globalActionsInputRef}
+              className='TopBarPageHeaderGlobalActions-inputContainer'
+            >
+              <div className='TopBarPageHeaderGlobalActions-icon'>
+                {MagnifyingGlassIcon}
+              </div>
+
+              <input
+                placeholder='Search'
+                onFocus={() => expandInputWidthHandler(globalActionsInputRef)}
+                onBlur={() => shrinkInputWidthHandler(globalActionsInputRef)}
+              />
+            </div>
           </div>
 
           <div
