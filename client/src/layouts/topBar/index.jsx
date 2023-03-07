@@ -1,15 +1,22 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 import './topBar.styles.css';
 
-const TopBar = () => {
-  const [cookies, setCookie] = useCookies(['tab']);
+const tabNavigation = ['list', 'board', 'calendar'];
 
-  setCookie('tab', 'LIST', { path: '/' });
+const capitalizeFirstLetter = string => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+const TopBar = () => {
+  const [cookies, setCookie] = useCookies(['activeTab']);
+  const [hoveredTab, setHoveredTab] = useState(null);
+  const [isCreateNewHovered, setIsCreateNewHovered] = useState(false);
+  const [isSettingsAvatarHovered, setIsSettingsAvatarHovered] = useState(false);
 
   const initialState = {
-    activeTab: 'LIST',
+    activeTab: `${cookies.activeTab || 'list'}`,
   };
 
   const reducer = (state, action) => {
@@ -25,6 +32,7 @@ const TopBar = () => {
 
   const tabClickHandler = tab => {
     dispatch({ type: 'SET_ACTIVE_TAB', payload: tab });
+    setCookie('activeTab', tab, { path: '/' });
   };
 
   return (
@@ -35,37 +43,26 @@ const TopBar = () => {
         <div className='Avatar'>AR</div>
 
         <div className='TopBarPageHeaderStructure-titleAndNavMenuRow'>
-          <h1 className='TopBarPageHeaderStructure-title'>My Tasks</h1>
+          <div className='TopBarPageHeaderStructure-title'>
+            <h1>My Tasks</h1>
+          </div>
 
           <div className='TopBarPageHeaderStructure-navMenuRow'>
             <ul className='TabNavigation-list'>
-              <li
-                className={`TabNavigationBar-tab
-                  ${
-                    state.activeTab === 'LIST' && 'TabNavigationBar-tab-active'
-                  }`}
-              >
-                <span onClick={() => tabClickHandler('LIST')}>List</span>
-              </li>
-              <li
-                className={`TabNavigationBar-tab
-                  ${
-                    state.activeTab === 'BOARD' && 'TabNavigationBar-tab-active'
-                  }`}
-              >
-                <span onClick={() => tabClickHandler('BOARD')}>Board</span>
-              </li>
-              <li
-                className={`TabNavigationBar-tab
-                  ${
-                    state.activeTab === 'CALENDAR' &&
-                    'TabNavigationBar-tab-active'
-                  }`}
-              >
-                <span onClick={() => tabClickHandler('CALENDAR')}>
-                  Calendar
-                </span>
-              </li>
+              {tabNavigation.map((tab, index) => (
+                <li
+                  key={index}
+                  className={`TabNavigationBar-tab
+                  ${state.activeTab === tab && 'TabNavigationBar-tab-active'}
+                  ${hoveredTab === tab && 'TabNavigationBar-tab-active'}
+                  `}
+                  onClick={() => tabClickHandler(tab)}
+                  onMouseEnter={() => setHoveredTab(tab)}
+                  onMouseLeave={() => setHoveredTab(null)}
+                >
+                  <span>{capitalizeFirstLetter(tab)}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -81,7 +78,29 @@ const TopBar = () => {
             <input className='' placeholder='Search' />
           </div>
 
-          <div className='PlusCircleIcon'>{PlusCricleIcon}</div>
+          <div
+            className='PlusCircleIcon'
+            onMouseEnter={() => setIsCreateNewHovered(true)}
+            onMouseLeave={() => setIsCreateNewHovered(false)}
+          >
+            {PlusCricleIcon}
+            {isCreateNewHovered && (
+              <div className='PlusCircleIcon-speechBubble'>Create new</div>
+            )}
+          </div>
+
+          <div
+            className='TopBarPageHeaderGlobalActions-settingsMenuAvatar'
+            onMouseEnter={() => setIsSettingsAvatarHovered(true)}
+            onMouseLeave={() => setIsSettingsAvatarHovered(false)}
+          >
+            AR
+            {isSettingsAvatarHovered && (
+              <div className='TopBarPageHeaderGlobalActions-speechBubble'>
+                Adam Ridhwan Amir Hamzah
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -115,8 +134,8 @@ const PlusCricleIcon = (
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 24 24'
     fill='#f06a6a'
-    height='32px'
-    width='32px'
+    height='35px'
+    width='35px'
   >
     <path
       fillRule='evenodd'
