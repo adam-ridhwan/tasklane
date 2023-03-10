@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import './globalActionsHeader.styles.css';
 
 const GlobalActionsHeader = () => {
+  const [isInputActive, setIsInputActive] = useState(false);
   const [divHovered, setDivHovered] = useState(false);
   const [isCreateNewHovered, setIsCreateNewHovered] = useState(false);
   const [isSettingsAvatarHovered, setIsSettingsAvatarHovered] = useState(false);
@@ -58,6 +59,23 @@ const GlobalActionsHeader = () => {
     divRef.current.style.border = '1px solid #cfcbcb';
   };
 
+  useEffect(() => {
+    const inputDropdownHandler = e => {
+      if (!dropdownRef.current.contains(e.target)) {
+        return setIsInputActive(false);
+      }
+    };
+
+    document.addEventListener('mousedown', inputDropdownHandler);
+    return () => {
+      document.removeEventListener('mousedown', inputDropdownHandler);
+    };
+  });
+
+  useEffect(() => {
+    isInputActive ? expandInputWidthHandler() : shrinkInputWidthHandler();
+  }, [isInputActive]);
+
   // print to console ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   useEffect(() => {
     // console.log(divHovered);
@@ -79,8 +97,10 @@ const GlobalActionsHeader = () => {
             <input
               ref={inputRef}
               placeholder='Search'
-              onFocus={() => expandInputWidthHandler()}
-              onBlur={() => shrinkInputWidthHandler()}
+              onFocus={() => setIsInputActive(true)}
+              // onBlur={() => setIsInputActive(false)}
+              // onFocus={() => expandInputWidthHandler()}
+              // onBlur={() => shrinkInputWidthHandler()}
               onMouseEnter={() => darkenBorderHandler()}
               onMouseLeave={() => lightenBorderHandler()}
             />
@@ -110,6 +130,9 @@ const GlobalActionsHeader = () => {
                         }}
                         onMouseEnter={() => setDivHovered(recent.id)}
                         onMouseLeave={() => setDivHovered(null)}
+                        onClick={() => {
+                          console.log(recent.name);
+                        }}
                       >
                         <div>{MiniSquareIcon}</div>
 
@@ -139,6 +162,9 @@ const GlobalActionsHeader = () => {
                         style={{
                           background:
                             savedSearch.id === divHovered && '#FAFAFA',
+                        }}
+                        onClick={() => {
+                          console.log(savedSearch.name);
                         }}
                       >
                         <div>{savedSearch.icon}</div>
