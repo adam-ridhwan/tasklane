@@ -1,0 +1,53 @@
+.TopBarPageHeaderGlobalActions-plusCircleIcon {
+  border-radius: 50px;
+  box-sizing: border-box;
+  height: 28px;
+  min-height: 28px;
+  min-width: 28px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f06a6a;
+  cursor: pointer;
+  position: relative;
+}
+
+.TopBarPageHeaderGlobalActions-plusCircleIcon svg {
+  fill: white;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+}
+
+.TopBarPageHeaderGlobalActions-plusCircleIconDropdown {
+}
+
+.TopBarPageHeaderGlobalActions-plusCircleIconSpeechBubble {
+  position: absolute;
+  top: 42px;
+  right: -28.5px;
+  color: white;
+  font-size: 12px;
+  background-color: #2f2f32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  width: 90px;
+  height: 35px;
+}
+
+.TopBarPageHeaderGlobalActions-plusCircleIconSpeechBubble:after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 13px solid transparent;
+  border-bottom-color: #2f2f32;
+  border-top: 0;
+  margin-left: -13px;
+  margin-top: -13px;
+}

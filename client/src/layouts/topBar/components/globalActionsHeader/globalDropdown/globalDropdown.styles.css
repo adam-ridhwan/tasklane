@@ -1,0 +1,144 @@
+:root {
+  --dropdown-width: 480px;
+}
+
+.TopBarPageHeaderGlobalActions-dropdownContainer {
+  /* outline: 1px solid red; */
+  opacity: 0;
+  position: absolute;
+  background: white;
+  border-width: 1px;
+  border-style: solid;
+  border-top-color: #edeae9;
+  border-right-color: #edeae9;
+  border-left-color: #edeae9;
+  border-bottom: transparent;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  width: var(--dropdown-width);
+  right: -3px;
+  top: 32px;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.TopBarPageHeaderGlobalActions-borderReference {
+  /* border-top: 1px solid cyan; */
+  position: relative;
+  width: var(--dropdown-width);
+  /* max-width: inherit; */
+}
+
+.TopBarPageHeaderGlobalActions-title {
+  /* outline: 1px solid purple; */
+  color: #6d6e6f;
+  height: 35px;
+  padding: 5px 15px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.TopBarPageHeaderGlobalActions-recentItemsContainer {
+  /* outline: 1px solid green; */
+  background: white;
+  position: absolute;
+  top: 0;
+  left: -1px;
+  height: 30px;
+  width: var(--dropdown-width);
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: transparent;
+  border-right-color: #edeae9;
+  border-left-color: #edeae9;
+  border-bottom: transparent;
+  overflow: hidden;
+  transition: top 0.15s ease-in-out, height 0.15s ease-in-out;
+}
+
+.TopBarPageHeaderGlobalActions-recentItems {
+  /* outline: 1px solid blue; */
+  height: 60px;
+  background: white;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: var(--dropdown-width);
+  cursor: pointer;
+}
+
+.TopBarPageHeaderGlobalActions-recentItems:hover {
+  background: #fafafa;
+}
+
+.TopBarPageHeaderGlobalActions-recentItems > div:first-child {
+  /* outline: 1px solid blue; */
+  padding: 2px 5px;
+}
+
+.TopBarPageHeaderGlobalActions-recentItems > div:last-child {
+  /* outline: 1px solid blue; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.TopBarPageHeaderGlobalActions-recentItems > div > div {
+  /* outline: 1px solid blue; */
+  margin: 2px 0;
+  display: flex;
+}
+.TopBarPageHeaderGlobalActions-recentItems > div > div:nth-child(2) {
+  color: #6d6e6f;
+}
+
+/*  */
+
+.TopBarPageHeaderGlobalActions-savedSearchesContainer {
+  /* outline: 1px solid green; */
+  position: absolute;
+  background: white;
+  top: 0;
+  left: -1px;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: #edeae9;
+  border-right-color: #edeae9;
+  border-left-color: #edeae9;
+  border-bottom-color: #edeae9;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: calc(var(--dropdown-width) + 0.2px);
+  transition: top 0.15s ease-in-out;
+}
+
+.TopBarPageHeaderGlobalActions-savedSearchesItems {
+  /* outline: 1px solid red; */
+  height: 40px;
+  background: white;
+  border-radius: 5px;
+  padding: 8px 18px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.TopBarPageHeaderGlobalActions-savedSearchesItems:hover {
+  background: #fafafa;
+}
+
+.TopBarPageHeaderGlobalActions-savedSearchesItems > div:first-child {
+  /* outline: 1px solid blue; */
+  padding: 0 1px;
+  display: flex;
+  align-items: center;
+}
+
+.TopBarPageHeaderGlobalActions-savedSearchesItems > div:last-child {
+  /* outline: 1px solid blue; */
+  display: flex;
+  align-items: center;
+  padding: 0 1px;
+}
