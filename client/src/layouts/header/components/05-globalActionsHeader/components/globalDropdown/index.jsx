@@ -11,7 +11,7 @@ const GlobalDropdown = props => {
 
   const savedSearches = [
     { id: '7175', name: 'Tasks I created', icon: NewTaskIcon },
-    { id: '0875', name: 'Tasks I assigned to others', icon: MyTasksIcon },
+    { id: '0875', name: 'Tasks I assigned to others', icon: AssignedTasksIcon },
     { id: '3640', name: 'Recently completed tasks', icon: CheckMarkIcon },
   ];
 
@@ -77,14 +77,11 @@ export default GlobalDropdown;
 const MiniSquareIcon = (
   <svg
     viewBox='0 0 24 24'
-    aria-hidden='true'
+    // aria-hidden='true'
     focusable='false'
     height='0.7rem'
     width='0.7rem'
     fill='#f26fb2'
-    style={{
-      marginTop: '0.25rem',
-    }}
   >
     <path d='M0 12C0 6.34315 0 3.51472 1.75736 1.75736 3.51472 0 6.34315 0 12 0c5.6569 0 8.4853 0 10.2426 1.75736C24 3.51472 24 6.34315 24 12c0 5.6569 0 8.4853-1.7574 10.2426C20.4853 24 17.6569 24 12 24c-5.65685 0-8.48528 0-10.24264-1.7574C0 20.4853 0 17.6569 0 12Z'></path>
   </svg>
@@ -103,7 +100,7 @@ const NewTaskIcon = (
   </svg>
 );
 
-const MyTasksIcon = (
+const AssignedTasksIcon = (
   <svg
     viewBox='0 0 32 32'
     aria-hidden='true'

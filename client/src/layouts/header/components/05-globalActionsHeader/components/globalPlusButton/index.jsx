@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './styles.css';
 
 const GlobalPlusButton = () => {
-  const [isCreateNewHovered, setIsCreateNewHovered] = useState(false);
+  const [isCreateNewHovered, setIsCreateNewHovered] = useState(true);
 
   return (
     <>

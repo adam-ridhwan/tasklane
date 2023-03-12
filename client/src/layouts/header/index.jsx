@@ -1,6 +1,6 @@
 import ExpandSideBarButton from './components/01-expandSideBarButton';
 import AvatarPhotoImage from './components/02-avatarPhotoImage';
-import TabList from './components/03-tabNavigationList/tabList';
+import TabList from './components/03-tabNavigationList';
 import ShareButton from './components/04-shareButton';
 import GlobalActionsHeader from './components/05-globalActionsHeader';
 
