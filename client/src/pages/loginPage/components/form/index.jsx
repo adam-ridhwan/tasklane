@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/authContext.jsx';
+import { AuthContext } from '../../../../context/authContext.jsx';
+import Error from '../error/index.jsx';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const LoginForm = () => {
     email: '',
     password: '',
   });
+
   const [error, setError] = useState(false);
 
   const handleLoginUser = async e => {
@@ -67,11 +69,8 @@ const LoginForm = () => {
       </form>
 
       {/* ERROR MESSAGE ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */}
-      {error && (
-        <div>
-          <p>{error}</p>
-        </div>
-      )}
+
+      <Error error={error} />
     </>
   );
 };

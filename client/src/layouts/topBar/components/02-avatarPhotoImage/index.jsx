@@ -1,4 +1,4 @@
-import './avatarPhotoImage.styles.css';
+import './styles.css';
 
 const AvatarPhotoImage = () => {
   return (

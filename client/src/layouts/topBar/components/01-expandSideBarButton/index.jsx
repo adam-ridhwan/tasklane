@@ -1,4 +1,4 @@
-import './expandSideBarButton.styles.css';
+import './styles.css';
 
 const ExpandSideBarButton = () => {
   return (

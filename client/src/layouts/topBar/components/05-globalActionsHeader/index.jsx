@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-import GlobalDropdown from './globalDropdown/globalDropdown';
-import GlobalPlusButton from './globalPlusButton/globalPlusButton';
-import GlobalSettingsButton from './globalSettingsButton/globalSettingsButton';
+import GlobalDropdown from './components/globalDropdown';
+import GlobalPlusButton from './components/globalPlusButton';
+import GlobalSettingsButton from './components/globalSettingsButton';
 
-import './globalActionsHeader.styles.css';
+import './styles.css';
 
 const recents = [
   { id: '7170', name: 'BU projects' },

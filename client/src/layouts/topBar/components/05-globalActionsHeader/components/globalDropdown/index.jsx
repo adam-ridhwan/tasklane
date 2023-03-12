@@ -1,4 +1,4 @@
-import './globalDropdown.styles.css';
+import './styles.css';
 
 const GlobalDropdown = props => {
   const { recentItemsRef, dropdownRef, savedSearchesRef } = props;
@@ -57,11 +57,8 @@ const GlobalDropdown = props => {
                 <div
                   key={savedSearch.id}
                   className='TopBarPageHeaderGlobalActions-savedSearchesItems'
-                  onMouseEnter={() => setDivHovered(savedSearch.id)}
-                  onMouseLeave={() => setDivHovered(null)}
-                  onClick={() => {
-                    console.log(savedSearch.name);
-                  }}
+                  // onMouseEnter={() => setDivHovered(savedSearch.id)}
+                  // onMouseLeave={() => setDivHovered(null)}
                 >
                   <div>{savedSearch.icon}</div>
                   <div>{savedSearch.name}</div>

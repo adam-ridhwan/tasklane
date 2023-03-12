@@ -1,7 +1,10 @@
 import * as EmailValidator from 'email-validator';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/authContext';
+import { AuthContext } from '../../../../context/authContext';
+import Error from '../error';
+
+import './styles.css';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -243,7 +246,7 @@ const Register = () => {
           </div>
         </form>
 
-        {error && <div>{error}</div>}
+        <Error error={error} />
       </div>
     </>
   );

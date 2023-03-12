@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import './globalSettingsButton.styles.css';
+import './styles.css';
 
 const GlobalSettingsButton = () => {
   const [isSettingsAvatarHovered, setIsSettingsAvatarHovered] = useState(false);

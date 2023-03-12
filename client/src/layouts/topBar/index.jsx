@@ -1,10 +1,10 @@
-import AvatarPhotoImage from './components/avatarPhotoImage/avatarPhotoImage';
-import ExpandSideBarButton from './components/expandSideBarButton/expandSideBarButton';
-import GlobalActionsHeader from './components/globalActionsHeader/globalActionsHeader';
-import ShareButton from './components/shareButton/shareButton';
-import TabList from './components/tabList/tabList';
+import ExpandSideBarButton from './components/01-expandSideBarButton';
+import AvatarPhotoImage from './components/02-avatarPhotoImage';
+import TabList from './components/03-tabNavigationList/tabList';
+import ShareButton from './components/04-shareButton';
+import GlobalActionsHeader from './components/05-globalActionsHeader';
 
-import './index.css';
+import './styles.css';
 
 const TopBar = () => {
   return (

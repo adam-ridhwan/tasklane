@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import './globalPlusButton.styles.css';
+import './styles.css';
 
 const GlobalPlusButton = () => {
   const [isCreateNewHovered, setIsCreateNewHovered] = useState(false);

@@ -1,4 +1,4 @@
-import './shareButton.styles.css';
+import './styles.css';
 
 const ShareButton = () => {
   return (
