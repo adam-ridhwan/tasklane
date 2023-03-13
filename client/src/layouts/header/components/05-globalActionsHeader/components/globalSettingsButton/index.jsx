@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './styles.css';
 
 const GlobalSettingsButton = () => {
-  const [isSettingsAvatarHovered, setIsSettingsAvatarHovered] = useState(true);
+  const [isSettingsAvatarHovered, setIsSettingsAvatarHovered] = useState(false);
 
   return (
     <>

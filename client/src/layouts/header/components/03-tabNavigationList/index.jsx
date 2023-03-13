@@ -1,5 +1,6 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 import './styles.css';
 
@@ -18,6 +19,8 @@ const capitalizeFirstLetter = string => {
 };
 
 const TabList = () => {
+  const naviagte = useNavigate();
+
   const [cookies, setCookie] = useCookies(['activeTab']);
   const [hoveredTab, setHoveredTab] = useState(null);
 
@@ -39,7 +42,9 @@ const TabList = () => {
   const tabClickHandler = tab => {
     dispatch({ type: 'SET_ACTIVE_TAB', payload: tab });
     setCookie('activeTab', tab, { path: '/' });
+    naviagte(`/home/${tab}`);
   };
+
   return (
     <>
       <div className='TopBarPageHeaderStructure-titleAndNavMenuRow'>
