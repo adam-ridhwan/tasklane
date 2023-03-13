@@ -17,7 +17,7 @@
   border-top-left-radius: 5px;
   width: var(--dropdown-width);
   right: -3px;
-  top: 32px;
+  top: 29px;
   font-size: 14px;
   pointer-events: none;
 }

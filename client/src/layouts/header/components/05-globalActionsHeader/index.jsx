@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import GlobalDropdown from './components/globalDropdown';
 import GlobalPlusButton from './components/globalPlusButton';
+import GlobalSearchBar from './components/globalSearchBar';
 import GlobalSettingsButton from './components/globalSettingsButton';
 
 import './styles.css';
@@ -28,9 +29,9 @@ const GlobalActionsHeader = () => {
     setTimeout(() => {
       recentItemsRef.current.style.top = '35px';
       recentItemsRef.current.style.height = `${recents.length * 60}px`;
-      savedSearchesRef.current.style.top = `${recents.length * 60 + 35}px`;
       dropdownRef.current.style.opacity = '1';
       dropdownRef.current.style.pointerEvents = 'auto';
+      savedSearchesRef.current.style.top = `${recents.length * 60 + 35}px`;
     }, 150);
   };
 
@@ -39,9 +40,9 @@ const GlobalActionsHeader = () => {
     divRef.current.style.border = '1px solid #cfcbcb';
     recentItemsRef.current.style.top = '1px';
     recentItemsRef.current.style.height = '35px';
-    savedSearchesRef.current.style.top = '0px';
     dropdownRef.current.style.opacity = '0';
     dropdownRef.current.style.pointerEvents = 'none';
+    savedSearchesRef.current.style.top = '0px';
   };
 
   const darkenBorderHandler = () => {
@@ -84,12 +85,11 @@ const GlobalActionsHeader = () => {
               {MagnifyingGlassIcon}
             </div>
 
-            <input
-              ref={inputRef}
-              placeholder='Search'
-              onFocus={() => setIsInputActive(true)}
-              onMouseEnter={() => darkenBorderHandler()}
-              onMouseLeave={() => lightenBorderHandler()}
+            <GlobalSearchBar
+              inputRef={inputRef}
+              darkenBorderHandler={darkenBorderHandler}
+              lightenBorderHandler={lightenBorderHandler}
+              setIsInputActive={setIsInputActive}
             />
 
             <GlobalDropdown
@@ -99,9 +99,7 @@ const GlobalActionsHeader = () => {
             />
           </div>
         </div>
-
-        <GlobalPlusButton />
-
+        {/* <GlobalPlusButton /> //? Not sure if i want to implement this yet */}
         <GlobalSettingsButton />
       </div>
     </>

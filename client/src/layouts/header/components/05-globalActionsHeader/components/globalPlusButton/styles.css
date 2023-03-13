@@ -1,4 +1,5 @@
 .TopBarPageHeaderGlobalActions-plusCircleIcon {
+  /* outline: 1px solid green; */
   border-radius: 50px;
   box-sizing: border-box;
   height: 28px;
@@ -13,7 +14,7 @@
   position: relative;
 }
 
-.TopBarPageHeaderGlobalActions-plusCircleIcon svg {
+.TopBarPageHeaderGlobalActions-plusCircleIcon div:first-child {
   fill: white;
   border-radius: 50%;
   height: 16px;
@@ -21,6 +22,10 @@
 }
 
 .TopBarPageHeaderGlobalActions-plusCircleIconDropdown {
+  position: absolute;
+  background-color: white;
+  border-top: 1px solid #edeae9;
+  width: 184px;
 }
 
 .TopBarPageHeaderGlobalActions-plusCircleIconSpeechBubble {

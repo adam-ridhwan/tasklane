@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './styles.css';
 
 const GlobalSettingsButton = () => {
-  const [isSettingsAvatarHovered, setIsSettingsAvatarHovered] = useState(false);
+  const [isSettingsAvatarHovered, setIsSettingsAvatarHovered] = useState(true);
 
   return (
     <>
@@ -14,8 +14,11 @@ const GlobalSettingsButton = () => {
       >
         AR
         {isSettingsAvatarHovered && (
-          <div className='TopBarPageHeaderGlobalActions-settingsMenuAvatarSpeechBubble'>
-            Adam Ridhwan Amir Hamzah
+          <div>
+            <div className='TopBarPageHeaderGlobalActions-settingsMenuAvatarSpeechBubble'>
+              <div>Adam Ridhwan Amir Hamzah</div>
+              <div>bu.edu</div>
+            </div>
           </div>
         )}
       </div>

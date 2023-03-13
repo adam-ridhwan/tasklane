@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import Header from '../../layouts/header/index.jsx';
 
-const Home = () => {
+const HomePage = () => {
+  // GetTodos();
+
   return (
     <>
-      <div></div>
+      <Header />
     </>
   );
 };
 
-export default Home;
+export default HomePage;

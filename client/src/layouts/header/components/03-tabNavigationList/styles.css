@@ -4,6 +4,7 @@
   height: 72px;
   width: 100%;
   min-width: fit-content;
+  padding-right: 16px;
 }
 
 .TopBarPageHeaderStructure-title {

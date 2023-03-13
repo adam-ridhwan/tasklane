@@ -1,8 +1,17 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { useCookies } from 'react-cookie';
-const tabNavigation = ['list', 'board', 'calendar'];
 
 import './styles.css';
+
+const tabNavigation = [
+  'overview',
+  'list',
+  'board',
+  'timeline',
+  'calendar',
+  'workflow',
+  'dashboard',
+];
 
 const capitalizeFirstLetter = string => {
   return string.charAt(0).toUpperCase() + string.slice(1);
