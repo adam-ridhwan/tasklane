@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/authContext.jsx';
-import { TodosContext } from '../context/todoContext.jsx';
-import verifyJWTExpiration from '../utils/verifyJWTExp.jsx';
+import { AuthContext } from '/src/context/authContext.jsx';
+import { TodosContext } from '/src/context/todoContext.jsx';
+import verifyJWTExpiration from '/src/utils/verifyJWTExp.jsx';
 
 const GetTodos = () => {
   const navigate = useNavigate();
@@ -29,4 +29,5 @@ const GetTodos = () => {
     fetchTodoHandler();
   }, []);
 };
+
 export default GetTodos;

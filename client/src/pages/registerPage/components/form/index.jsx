@@ -92,7 +92,7 @@ const Register = () => {
     }
 
     setAccessToken(data.accessToken);
-    navigate('/dashboard');
+    navigate('/home/overview');
   };
 
   const handleInputChange = event => {

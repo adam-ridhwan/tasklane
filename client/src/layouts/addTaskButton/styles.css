@@ -1,0 +1,40 @@
+.AddTaskButton-container {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  /* padding: 0 8px; */
+}
+
+.AddTaskButton-button {
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 8px;
+  background-color: #4573d2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 6px 0 0 6px;
+  /* width: 90px; */
+}
+
+.AddTaskButton-button div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.AddTaskButton-arrowDown {
+  margin-left: 1px;
+  background-color: #4573d2;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 4px;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}

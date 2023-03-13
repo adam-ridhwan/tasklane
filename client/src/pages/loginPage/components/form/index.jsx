@@ -32,7 +32,7 @@ const LoginForm = () => {
     }
 
     setAccessToken(data.accessToken);
-    navigate('/dashboard');
+    navigate('/home/overview');
   };
 
   const handleInputChange = e => {
