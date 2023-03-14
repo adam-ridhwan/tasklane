@@ -2,7 +2,6 @@
   height: 56px;
   display: flex;
   align-items: center;
-  /* padding: 0 8px; */
 }
 
 .AddTaskButton-button {
@@ -18,7 +17,6 @@
   align-items: center;
   gap: 4px;
   border-radius: 6px 0 0 6px;
-  /* width: 90px; */
 }
 
 .AddTaskButton-button div:first-child {

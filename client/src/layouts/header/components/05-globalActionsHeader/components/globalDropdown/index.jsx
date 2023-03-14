@@ -20,6 +20,13 @@ const GlobalDropdown = props => {
       <div
         ref={dropdownRef}
         className='TopBarPageHeaderGlobalActions-dropdownContainer'
+        style={{
+          // outline: '1px solid blue',
+          height: `${recents.length * 60 + savedSearches.length * 40 + 70}px`,
+          borderRadius: '5px',
+          boxShadow:
+            '0 0 0 .5px #edeae9, 0 5px 20px 0 rgba(109, 110, 111, 0.08)',
+        }}
       >
         <div className='TopBarPageHeaderGlobalActions-borderReference'>
           <div className='TopBarPageHeaderGlobalActions-title'>Recents</div>

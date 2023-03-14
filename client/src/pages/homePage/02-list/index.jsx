@@ -1,12 +1,27 @@
-import AddTaskButton from '/src/layouts/addTaskButton/index.jsx';
+import AddTaskButton from './components/addTaskButton/index.jsx';
+import CompletionButton from './components/completionButton/index.jsx';
+import SortButton from './components/sortButton/index.jsx';
 import Header from '/src/layouts/header/index.jsx';
+
+import CustomizeButton from './components/customizeButton/index.jsx';
+import './styles.css';
 
 const List = () => {
   return (
     <>
       <Header />
-      <div style={{ paddingLeft: '24px', paddingRight: '24px' }}>
-        <AddTaskButton />
+      <div className='PageToolBar-list'>
+        <div className='PageToolBar-list-leftContainer'>
+          <AddTaskButton />
+        </div>
+
+        <div className='PageToolBar-list-rightContainer'>
+          <div>
+            <CompletionButton />
+            <SortButton />
+            <CustomizeButton />
+          </div>
+        </div>
       </div>
     </>
   );

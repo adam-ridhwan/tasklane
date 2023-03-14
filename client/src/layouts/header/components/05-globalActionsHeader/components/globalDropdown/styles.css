@@ -13,13 +13,13 @@
   border-right-color: #edeae9;
   border-left-color: #edeae9;
   border-bottom: transparent;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+  /* border-radius: 5px; */
   width: var(--dropdown-width);
   right: -3px;
-  top: 29px;
+  top: 30px;
   font-size: 14px;
   pointer-events: none;
+  /* box-shadow: 0 0 0 1px #edeae9, 0 5px 20px 0 rgba(109, 110, 111, 0.08); */
 }
 
 .TopBarPageHeaderGlobalActions-borderReference {

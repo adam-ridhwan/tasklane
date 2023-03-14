@@ -1,5 +1,5 @@
-import MiniArrowDownIcon from '../../assets/svg/miniArrowDownIcon';
-import MiniPlusIcon from '../../assets/svg/miniPlusIcon';
+import MiniArrowDownIcon from '/src/assets/svg/miniArrowDownIcon';
+import MiniPlusIcon from '/src/assets/svg/miniPlusIcon';
 
 import './styles.css';
 
