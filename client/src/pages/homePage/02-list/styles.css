@@ -17,3 +17,41 @@
   flex-direction: row;
   gap: 4px;
 }
+
+.ThemeableButton-container {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+}
+
+.ThemeableButton-button {
+  color: #6d6e6f;
+  fill: #6d6e6f;
+  background: white;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 12px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  border-radius: 6px;
+  transition-duration: 0.2s;
+  transition-property: background, color, fill;
+}
+
+.ThemeableButton-button:hover {
+  background: rgba(55, 23, 23, 0.03);
+  color: #1e1f21;
+  fill: #1e1f21;
+}
+
+.ThemeableButton-button > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

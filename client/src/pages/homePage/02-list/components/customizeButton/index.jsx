@@ -17,9 +17,9 @@ const CustomizeButton = () => {
 
   return (
     <>
-      <div className='CompletionButton-container'>
+      <div className='ThemeableButton-container'>
         <div
-          className='CompletionButton-button CustomizeButton-button'
+          className='ThemeableButton-button CustomizeButton-button'
           role='button'
         >
           <div>
@@ -49,4 +49,5 @@ const CustomizeButton = () => {
     </>
   );
 };
+
 export default CustomizeButton;

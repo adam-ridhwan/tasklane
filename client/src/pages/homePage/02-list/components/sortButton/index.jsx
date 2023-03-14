@@ -15,8 +15,8 @@ const SortButton = () => {
 
   return (
     <>
-      <div className='CompletionButton-container'>
-        <div className='CompletionButton-button'>
+      <div className='ThemeableButton-container'>
+        <div className='ThemeableButton-button'>
           <div>
             <svg
               viewBox='0 0 24 24'
