@@ -1,17 +1,15 @@
-const GlobalSearchBar = ({
-  inputRef,
-  darkenBorderHandler,
-  lightenBorderHandler,
-  setIsInputActive,
-}) => {
+import './styles.css';
+
+const GlobalSearchBar = ({ inputRef, setIsInputActive }) => {
   return (
     <>
       <input
         ref={inputRef}
+        className='TopBarPageHeaderGlobalActions-input'
         placeholder='Search'
         onFocus={() => setIsInputActive(true)}
-        onMouseEnter={() => darkenBorderHandler()}
-        onMouseLeave={() => lightenBorderHandler()}
+        // onMouseEnter={() => darkenBorderHandler()}
+        // onMouseLeave={() => lightenBorderHandler()}
       />
     </>
   );

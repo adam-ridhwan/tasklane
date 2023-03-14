@@ -1,5 +1,4 @@
 .PageToolBar-list {
-  outline: 2px dotted red;
   padding-right: 24px;
   padding-left: 24px;
   display: flex;
@@ -7,7 +6,6 @@
 }
 
 .PageToolBar-list > div {
-  outline: 1px dotted green;
   width: 100%;
 }
 
@@ -26,6 +24,7 @@
 }
 
 .ThemeableButton-button {
+  user-select: none;
   color: #6d6e6f;
   fill: #6d6e6f;
   background: white;

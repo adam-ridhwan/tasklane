@@ -1,0 +1,12 @@
+.TopBarPageHeaderGlobalActions-input {
+  height: inherit;
+  width: 100%;
+  margin-right: 10px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.TopBarPageHeaderGlobalActions-input input::placeholder {
+  font-size: 14px;
+}

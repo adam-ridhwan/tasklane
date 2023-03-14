@@ -7,52 +7,52 @@ import GlobalSettingsButton from './components/globalSettingsButton';
 
 import './styles.css';
 
-const recents = [
-  { id: '7170', name: 'BU projects' },
-  { id: '7172', name: 'Scrum tasks' },
-  { id: '7176', name: 'Cat sitting list' },
-];
-
 const GlobalActionsHeader = () => {
+  const recents = [
+    { id: '7170', name: 'BU projects' },
+    { id: '7172', name: 'Scrum tasks' },
+    { id: '7176', name: 'Cat sitting list' },
+  ];
+  const savedSearches = [
+    { id: '7175', name: 'Tasks I created' },
+    { id: '0875', name: 'Tasks I assigned to others' },
+    { id: '3640', name: 'Recently completed tasks' },
+  ];
+
   const [isInputActive, setIsInputActive] = useState(false);
 
-  const inputRef = useRef(null);
   const divRef = useRef(null);
-  const recentItemsRef = useRef(null);
+  const inputRef = useRef(null);
   const dropdownRef = useRef(null);
+  const recentItemsRef = useRef(null);
   const savedSearchesRef = useRef(null);
 
   const expandInputWidthHandler = () => {
-    divRef.current.style.width = '480px';
-    divRef.current.style.border = '3px solid #3f6ac4';
+    divRef.current.classList.add('active');
 
     setTimeout(() => {
-      recentItemsRef.current.style.top = '35px';
-      recentItemsRef.current.style.height = `${recents.length * 60}px`;
-      dropdownRef.current.style.opacity = '1';
-      dropdownRef.current.style.pointerEvents = 'auto';
-      savedSearchesRef.current.style.top = `${recents.length * 60 + 35}px`;
+      dropdownRef.current.classList.add('active');
+      dropdownRef.current.style.height = `${
+        recents.length * 60 + 35 + savedSearches.length * 40 + 37
+      }px`;
+
+      recentItemsRef.current.classList.add('active');
+
+      savedSearchesRef.current.style.transform = `translateY(0px)`;
     }, 150);
   };
 
   const shrinkInputWidthHandler = () => {
-    divRef.current.style.width = '140px';
-    divRef.current.style.border = '1px solid #cfcbcb';
-    recentItemsRef.current.style.top = '1px';
-    recentItemsRef.current.style.height = '35px';
-    dropdownRef.current.style.opacity = '0';
-    dropdownRef.current.style.pointerEvents = 'none';
-    savedSearchesRef.current.style.top = '0px';
-  };
+    divRef.current.classList.remove('active');
 
-  const darkenBorderHandler = () => {
-    if (document.activeElement === inputRef.current) return;
-    divRef.current.style.border = '1px solid #afabac';
-  };
+    dropdownRef.current.classList.remove('active');
+    dropdownRef.current.style.height = '35px';
 
-  const lightenBorderHandler = () => {
-    if (document.activeElement === inputRef.current) return;
-    divRef.current.style.border = '1px solid #cfcbcb';
+    recentItemsRef.current.classList.remove('active');
+
+    savedSearchesRef.current.style.transform = `translateY(${
+      recents.length * -60 - 35
+    }px)`;
   };
 
   useEffect(() => {
@@ -87,15 +87,14 @@ const GlobalActionsHeader = () => {
 
             <GlobalSearchBar
               inputRef={inputRef}
-              darkenBorderHandler={darkenBorderHandler}
-              lightenBorderHandler={lightenBorderHandler}
               setIsInputActive={setIsInputActive}
             />
 
             <GlobalDropdown
-              recentItemsRef={recentItemsRef}
               dropdownRef={dropdownRef}
+              recentItemsRef={recentItemsRef}
               savedSearchesRef={savedSearchesRef}
+              isInputActive={isInputActive}
             />
           </div>
         </div>

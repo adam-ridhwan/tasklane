@@ -39,15 +39,11 @@
   transition: width 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
 
-.TopBarPageHeaderGlobalActions-inputContainer input {
-  height: inherit;
-  width: 100%;
-  margin-right: 10px;
-  border: none;
-  outline: none;
-  background-color: transparent;
+.TopBarPageHeaderGlobalActions-inputContainer:hover {
+  border-color: #afabac;
 }
 
-.TopBarPageHeaderGlobalActions-input input::placeholder {
-  font-size: 14px;
+.TopBarPageHeaderGlobalActions-inputContainer.active {
+  width: 480px;
+  border: 3px solid #3f6ac4;
 }

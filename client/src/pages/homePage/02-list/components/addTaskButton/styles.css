@@ -5,6 +5,7 @@
 }
 
 .AddTaskButton-button {
+  user-select: none;
   color: #fff;
   font-size: 12px;
   cursor: pointer;
@@ -26,6 +27,7 @@
 }
 
 .AddTaskButton-arrowDown {
+  position: relative;
   margin-left: 1px;
   background-color: #4573d2;
   height: 28px;
@@ -35,4 +37,31 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  color: #1e1f21;
+}
+
+.AddTaskButton-dropdown {
+  position: absolute;
+  top: 29px;
+  left: 0;
+  font-size: 14px;
+  line-height: 22px;
+  max-width: 500px;
+  min-width: 185px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px #edeae9, 0 5px 20px 0 rgba(109, 110, 111, 0.08);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.AddTaskButton-dropdown.active {
+  opacity: 1;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.AddTaskButton-dropdown div {
+  padding: 8px 16px;
+  cursor: pointer;
 }
