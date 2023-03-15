@@ -1,8 +1,7 @@
 import './styles.css';
 
 const GlobalDropdown = props => {
-  const { dropdownRef, recentItemsRef, savedSearchesRef, isInputActive } =
-    props;
+  const { dropdownRef, recentItemsRef, savedSearchesRef } = props;
 
   const recents = [
     { id: '7170', name: 'BU projects' },

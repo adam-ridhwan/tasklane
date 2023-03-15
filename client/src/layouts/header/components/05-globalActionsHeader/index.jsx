@@ -21,19 +21,19 @@ const GlobalActionsHeader = () => {
 
   const [isInputActive, setIsInputActive] = useState(false);
 
-  const divRef = useRef(null);
+  const expandableDivRef = useRef(null);
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
   const recentItemsRef = useRef(null);
   const savedSearchesRef = useRef(null);
 
   const expandInputWidthHandler = () => {
-    divRef.current.classList.add('active');
+    expandableDivRef.current.classList.add('active');
 
     setTimeout(() => {
       dropdownRef.current.classList.add('active');
       dropdownRef.current.style.height = `${
-        recents.length * 60 + 35 + savedSearches.length * 40 + 37
+        recents.length * 60 + 35 + savedSearches.length * 40 + 38
       }px`;
 
       recentItemsRef.current.classList.add('active');
@@ -43,7 +43,7 @@ const GlobalActionsHeader = () => {
   };
 
   const shrinkInputWidthHandler = () => {
-    divRef.current.classList.remove('active');
+    expandableDivRef.current.classList.remove('active');
 
     dropdownRef.current.classList.remove('active');
     dropdownRef.current.style.height = '35px';
@@ -78,7 +78,7 @@ const GlobalActionsHeader = () => {
       <div className='TopBarPageHeaderGlobalActions'>
         <div className='TopBarPageHeaderGlobalActions-textInputBase'>
           <div
-            ref={divRef}
+            ref={expandableDivRef}
             className='TopBarPageHeaderGlobalActions-inputContainer'
           >
             <div className='TopBarPageHeaderGlobalActions-icon'>
@@ -94,7 +94,6 @@ const GlobalActionsHeader = () => {
               dropdownRef={dropdownRef}
               recentItemsRef={recentItemsRef}
               savedSearchesRef={savedSearchesRef}
-              isInputActive={isInputActive}
             />
           </div>
         </div>

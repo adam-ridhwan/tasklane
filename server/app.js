@@ -5,7 +5,6 @@ import express from 'express';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
-import jwt from 'jsonwebtoken';
 import morgan from 'morgan';
 import xss from 'xss-clean';
 

@@ -13,7 +13,7 @@ const TopBar = () => {
         <ExpandSideBarButton />
         <AvatarPhotoImage />
         <TabList />
-        <ShareButton />
+        {/* <ShareButton /> //? Not sure if i want to implement this yet */}
         <GlobalActionsHeader />
       </div>
 
