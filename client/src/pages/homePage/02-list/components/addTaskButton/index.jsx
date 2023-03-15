@@ -8,21 +8,21 @@ import './styles.css';
 const AddTaskButton = () => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
-  const addTaskButtonRef = useRef(null);
-  const addTaskDropdownRef = useRef(null);
+  const buttonRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const clickHandler = e => {
       // if dropdown is clicked, dont close it
-      if (addTaskDropdownRef.current.contains(e.target)) return;
+      if (dropdownRef.current.contains(e.target)) return;
 
       // if arrow down button is clicked, toggle dropdown
-      if (addTaskButtonRef.current.contains(e.target)) {
+      if (buttonRef.current.contains(e.target)) {
         return setIsDropdownActive(isDropdownActive => !isDropdownActive);
       }
 
       // if anywhere else is clicked, close dropdown
-      if (!addTaskButtonRef.current.contains(e.target)) {
+      if (!buttonRef.current.contains(e.target)) {
         return setIsDropdownActive(false);
       }
     };
@@ -34,12 +34,12 @@ const AddTaskButton = () => {
   });
 
   const openDropdown = () => {
-    const dropdown = addTaskDropdownRef.current;
+    const dropdown = dropdownRef.current;
     dropdown.classList.add('active');
   };
 
   const closeDropdown = () => {
-    const dropdown = addTaskDropdownRef.current;
+    const dropdown = dropdownRef.current;
     dropdown.classList.remove('active');
   };
 
@@ -58,14 +58,14 @@ const AddTaskButton = () => {
         </div>
 
         <div
-          ref={addTaskButtonRef}
+          ref={buttonRef}
           className='AddTaskButton-arrowDown'
           // onClick={() => setIsDropdownActive(true)}
         >
           <MiniArrowDownIcon />
 
           <div
-            ref={addTaskDropdownRef}
+            ref={dropdownRef}
             className='AddTaskButton-dropdown'
             role='button'
           >
