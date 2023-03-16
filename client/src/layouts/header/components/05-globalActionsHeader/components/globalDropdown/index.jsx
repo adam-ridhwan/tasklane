@@ -64,7 +64,6 @@ const GlobalDropdown = props => {
           })}
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 };
@@ -74,7 +73,7 @@ export default GlobalDropdown;
 const MiniSquareIcon = (
   <svg
     viewBox='0 0 24 24'
-    // aria-hidden='true'
+    aria-hidden='true'
     focusable='false'
     height='0.7rem'
     width='0.7rem'

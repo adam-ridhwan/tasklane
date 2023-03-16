@@ -57,11 +57,7 @@ const AddTaskButton = () => {
           <div>Add task</div>
         </div>
 
-        <div
-          ref={buttonRef}
-          className='AddTaskButton-arrowDown'
-          // onClick={() => setIsDropdownActive(true)}
-        >
+        <div ref={buttonRef} className='AddTaskButton-arrowDown'>
           <MiniArrowDownIcon />
 
           <div

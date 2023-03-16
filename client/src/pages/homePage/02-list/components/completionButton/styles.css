@@ -3,8 +3,8 @@
   --checkMarkIconWidthAndHeight: 12px;
 }
 
+/* button ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 .Completion-button {
-  position: relative;
   user-select: none;
   color: #6d6e6f;
   fill: #6d6e6f;
@@ -26,7 +26,7 @@
 }
 
 .Completion-button.active {
-  background-color: rgba(55, 23, 23, 0.05);
+  background: rgba(55, 23, 23, 0.05);
   color: #1e1f21;
   fill: #1e1f21;
 }
@@ -37,15 +37,16 @@
   fill: #1e1f21;
 }
 
+/* dropdown ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 .Completion-button-dropdown {
-  padding: 4px 0;
   position: absolute;
+  top: 43px;
+  left: 0;
+  padding: 4px 0;
   border-radius: 4px;
   background-color: white;
   color: #1e1f21;
   box-shadow: 0 0 0 1px #edeae9, 0 5px 20px 0 rgba(109, 110, 111, 0.08);
-  top: 43px;
-  left: 0;
   display: flex;
   flex-direction: column;
   font-size: 14px;
@@ -62,7 +63,80 @@
   pointer-events: auto;
 }
 
+.Completion-button-dropdown-item {
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.Completion-button-dropdown > div:nth-child(2) {
+  position: relative;
+}
+
+.Completion-button-dropdown-completed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 4px 0;
+  border-radius: 4px;
+  background-color: white;
+  color: #1e1f21;
+  box-shadow: 0 0 0 1px #edeae9, 0 5px 20px 0 rgba(109, 110, 111, 0.08);
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  max-width: 500px;
+  min-width: 185px;
+  user-select: none;
+  cursor: pointer;
+  pointer-events: none;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.Completion-button-dropdown-completed.position-right {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(calc(100% - 6px));
+}
+
+.Completion-button-dropdown-completed.position-left {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.Completion-button-dropdown-completed-item {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+
+.Completion-button-dropdown-completed-item:hover {
+  background-color: rgba(55, 23, 23, 0.03);
+}
+
+.Completion-button-dropdown-completed > div > div ~ div {
+  line-height: 18px;
+  color: #6d6e6f;
+  padding: 8px 12px 0
+    calc(var(--checkMarkIconWidthAndHeight) + var(--checkMarkMargin) * 2);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  user-select: none;
+  cursor: default;
+}
+
+.Completion-button-spacer {
+  height: calc(var(--checkMarkIconWidthAndHeight) + var(--checkMarkMargin) * 2);
+  width: calc(var(--checkMarkIconWidthAndHeight) + var(--checkMarkMargin) * 2);
+}
+
 /* svg ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+.Completion-button-miniCheckIcon {
+  height: 12px;
+  width: 12px;
+}
 
 .Completion-button-checkMarkIcon {
   margin: 0 var(--checkMarkMargin);
@@ -70,31 +144,18 @@
   height: var(--checkMarkIconWidthAndHeight);
 }
 
-.Completion-button-miniCheckIcon {
-  height: 12px;
-  width: 12px;
-}
-
 .Completion-button > div:first-child {
   display: flex;
   align-items: center;
 }
 
-/* dropdown ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-
-.Completion-button-dropdown div {
-  /* outline: 1px solid green; */
-  height: 36px;
-  display: flex;
-  align-items: center;
+.Completion-button-arrowRightIcon {
+  width: 16px;
+  height: 16px;
 }
 
-.Completion-button-spacer {
-  height: calc(var(--checkMarkIconWidthAndHeight) +var(--checkMarkMargin) * 2);
-  width: calc(var(--checkMarkIconWidthAndHeight) +var(--checkMarkMargin) * 2);
-}
-
-.Completion-button-arrowRight {
+.Completion-button-arrowRightIcon {
   margin-left: auto;
   margin-right: 5px;
+  fill: #1e1f21;
 }
