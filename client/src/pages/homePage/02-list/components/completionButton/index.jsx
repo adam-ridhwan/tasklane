@@ -13,17 +13,17 @@ const COMPLETED_SINCE_TITLES = [
 ];
 
 const CompletionButton = () => {
+  const [isDropdownActive, setIsDropdownActive] = useState(false);
   const [activeTitleIndex, setActiveTitleIndex] = useState(2);
   const [activeCompletedSinceIndex, setActiveCompletedSinceIndex] = useState();
-  const [isDropdownActive, setIsDropdownActive] = useState(false);
   const [hoveredTitleIndex, setHoveredTitleIndex] = useState(activeTitleIndex);
 
   // first level dropdown
-  const buttonRef = useRef(null);
-  const dropdownRef = useRef(null);
-  const completionButtonRef = useRef([]);
-  completionButtonRef.current = COMPLETION_TITLES.map(
-    (_, i) => completionButtonRef.current[i] ?? createRef()
+  const completionButtonRef = useRef(null);
+  const titleDropdownRef = useRef(null);
+  const titleButtonRef = useRef([]);
+  titleButtonRef.current = COMPLETION_TITLES.map(
+    (_, i) => titleButtonRef.current[i] ?? createRef()
   );
 
   // second level dropdown
@@ -55,12 +55,13 @@ const CompletionButton = () => {
   useEffect(() => {
     const clickDropdownHandler = e => {
       const { current: label } = labelRef;
-      const { current: dropdown } = dropdownRef;
-      const { current: button } = buttonRef;
+      const { current: titleDropdown } = titleDropdownRef;
+      const { current: completionButton } = completionButtonRef;
 
-      if (label.contains(e.target) || dropdown.contains(e.target)) return;
+      if (label.contains(e.target) || titleDropdown.contains(e.target)) return;
 
-      if (button.contains(e.target)) return setIsDropdownActive(prev => !prev);
+      if (completionButton.contains(e.target))
+        return setIsDropdownActive(prev => !prev);
 
       setHoveredTitleIndex(activeTitleIndex);
       setIsDropdownActive(false);
@@ -73,36 +74,38 @@ const CompletionButton = () => {
   });
 
   const openDropdown = () => {
-    const dropdown = dropdownRef.current;
-    const button = buttonRef.current;
+    const { current: titleDropdown } = titleDropdownRef;
+    const { current: completionButton } = completionButtonRef;
 
-    dropdown.classList.add('active');
-    button.classList.add('active');
-    button.classList.remove('Completion-button-hover');
+    titleDropdown.classList.add('active');
+    completionButton.classList.add('active');
+    completionButton.classList.remove('Completion-button-hover');
   };
 
   const closeDropdown = () => {
-    const dropdown = dropdownRef.current;
-    const button = buttonRef.current;
+    const { current: titleDropdown } = titleDropdownRef;
+    const { current: completionButton } = completionButtonRef;
 
-    dropdown.classList.remove('active');
-    button.classList.remove('active');
-    button.classList.add('Completion-button-hover');
+    titleDropdown.classList.remove('active');
+    completionButton.classList.remove('active');
+    completionButton.classList.add('Completion-button-hover');
     closeCompletedSinceDropdown();
   };
 
   const openCompletedSinceDropdown = () => {
-    completedSinceDropdownRef.current.classList.add(
+    const { current: completedSinceDropdown } = completedSinceDropdownRef;
+
+    completedSinceDropdown.classList.add(
       activeTitleIndex === 1 ? 'position-right' : 'position-left'
     );
   };
 
   const closeCompletedSinceDropdown = () => {
-    const completedSinceDropdown = completedSinceDropdownRef.current;
+    const { current: completedSinceDropdown } = completedSinceDropdownRef;
+
     completedSinceDropdown.classList.remove('position-right', 'position-left');
   };
 
-  // toggle dropdown
   useEffect(() => {
     isDropdownActive ? openDropdown() : closeDropdown();
   }, [isDropdownActive]);
@@ -110,15 +113,14 @@ const CompletionButton = () => {
   // set active title when completion menu button is hovered
   const handleHoverTitle = i => {
     setHoveredTitleIndex(i);
-
-    // if 'completed task' menu button is hovered, toggle completed since dropdown
     i === 1 ? openCompletedSinceDropdown() : closeCompletedSinceDropdown();
   };
 
   // hover effects on completion menu buttons
   useEffect(() => {
-    const { current: completionButton } = completionButtonRef;
-    completionButton.forEach((ref, i) => {
+    const { current: titleButton } = titleButtonRef;
+
+    titleButton.forEach((ref, i) => {
       ref.current.style.backgroundColor =
         i === hoveredTitleIndex
           ? i === 1
@@ -130,7 +132,6 @@ const CompletionButton = () => {
 
   // render checkmark icon if title is selected
   const renderTitlesCheckMark = i => {
-    // if title is not selected, return empty div
     if (activeTitleIndex !== i) {
       return <div className='Completion-button-spacer' />;
     }
@@ -138,22 +139,17 @@ const CompletionButton = () => {
   };
 
   const renderCompletedSinceCheckMark = i => {
-    // if title is not selected, return empty div
     if (activeCompletedSinceIndex !== i) {
       return <div className='Completion-button-spacer' />;
     }
     return <CheckMarkIcon />;
   };
 
-  useEffect(() => {
-    // console.log('completed since index: ', activeCompletedSinceIndex);
-  }, [activeCompletedSinceIndex]);
-
   return (
     <>
       <div className='ThemeableButton-container'>
         <div
-          ref={buttonRef}
+          ref={completionButtonRef}
           className='Completion-button Completion-button-hover'
         >
           <div>
@@ -163,21 +159,21 @@ const CompletionButton = () => {
           <div>{COMPLETION_TITLES[activeTitleIndex]}</div>
         </div>
 
-        <div ref={dropdownRef} className='Completion-button-dropdown'>
+        <div ref={titleDropdownRef} className='Completion-button-dropdown'>
           {COMPLETION_TITLES.map((title, i) => {
             return (
               <div
                 key={i}
-                ref={completionButtonRef.current[i]}
+                ref={titleButtonRef.current[i]}
                 onClick={e => handleSetActiveTitle(e, i)}
                 onMouseEnter={() => handleHoverTitle(i)}
                 className='Completion-button-dropdown-item'
               >
                 {renderTitlesCheckMark(i)}
                 <span>{title}</span>
-                {title === 'Completed tasks' && <ArrowRightIcon />}
+                {i === 1 && <ArrowRightIcon />}
 
-                {title === 'Completed tasks' && (
+                {i === 1 && (
                   <div
                     ref={completedSinceDropdownRef}
                     className='Completion-button-dropdown-completed'

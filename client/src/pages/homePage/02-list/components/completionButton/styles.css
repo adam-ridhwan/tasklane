@@ -121,7 +121,7 @@
   color: #6d6e6f;
   padding: 8px 12px 0
     calc(var(--checkMarkIconWidthAndHeight) + var(--checkMarkMargin) * 2);
-  margin-bottom: 4px;
+  padding-bottom: 4px;
   white-space: nowrap;
   user-select: none;
   cursor: default;
