@@ -2,8 +2,8 @@ import { createRef, useEffect, useRef, useState } from 'react';
 
 import './styles.css';
 
-const COMPLETION_TITLES = ['Incomplete tasks', 'Completed tasks', 'All tasks'];
-const COMPLETED_SINCE_TITLES = [
+const OPTIONS = ['Incomplete tasks', 'Completed tasks', 'All tasks'];
+const RANGES = [
   'All completed tasks',
   'Today',
   'Yesterday',
@@ -14,56 +14,55 @@ const COMPLETED_SINCE_TITLES = [
 
 const CompletionButton = () => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
-  const [activeTitleIndex, setActiveTitleIndex] = useState(2);
-  const [activeCompletedSinceIndex, setActiveCompletedSinceIndex] = useState();
-  const [hoveredTitleIndex, setHoveredTitleIndex] = useState(activeTitleIndex);
+  const [activeOption, setActiveOption] = useState(2);
+  const [activeRange, setActiveRange] = useState();
+  const [hoveredOption, setHoveredOption] = useState(activeOption);
 
-  // first level dropdown
-  const completionButtonRef = useRef(null);
-  const titleDropdownRef = useRef(null);
-  const titleButtonRef = useRef([]);
-  titleButtonRef.current = COMPLETION_TITLES.map(
-    (_, i) => titleButtonRef.current[i] ?? createRef()
+  // FIRST LEVEL DROPDOWN
+  const toggleDropdownButtonRef = useRef(null); // main button that toggles dropdown
+  const optionsDropdownRef = useRef(null); // main dropdown
+  const optionsItemsRef = useRef([]); // dropdown items: TASK_COMPLETION_OPTIONS
+  optionsItemsRef.current = OPTIONS.map(
+    (_, i) => optionsItemsRef.current[i] ?? createRef()
   );
 
-  // second level dropdown
-  const completedSinceDropdownRef = useRef(null);
-  const completedSinceButtonRef = useRef([]);
-  const labelRef = useRef(null);
-
-  completedSinceButtonRef.current = COMPLETED_SINCE_TITLES.map(
-    (_, i) => completedSinceButtonRef.current[i] ?? createRef()
+  // SECOND LEVEL DROPDOWN
+  const rangeDropdownRef = useRef(null); // nested dropdown for 'completed tasks'
+  const rangeItemsRef = useRef([]); // nested dropdown items: DATE_RANGE
+  const labelRef = useRef(null); // label: 'Marked completed since:'
+  rangeItemsRef.current = RANGES.map(
+    (_, i) => rangeItemsRef.current[i] ?? createRef()
   );
 
   // set active title when completion menu button is clicked
-  const handleSetActiveTitle = (e, i) => {
+  const handleSetActiveOption = (e, i) => {
     const { current: label } = labelRef;
-    const { current: completedSinceDropdown } = completedSinceDropdownRef;
+    const { current: rangeDropdown } = rangeDropdownRef;
 
     if (label.contains(e.target)) return;
 
-    setActiveTitleIndex(i);
+    setActiveOption(i);
     setIsDropdownActive(false);
 
-    if (i !== 1) return setActiveCompletedSinceIndex(null);
+    if (i !== 1) return setActiveRange(null);
 
-    if (!completedSinceDropdown.contains(e.target))
-      setActiveCompletedSinceIndex(0);
+    if (!rangeDropdown.contains(e.target)) return setActiveRange(0);
   };
 
   // toggling dropdown functionality
   useEffect(() => {
     const clickDropdownHandler = e => {
+      const { current: toggleDropdownButton } = toggleDropdownButtonRef;
+      const { current: optionsDropdown } = optionsDropdownRef;
       const { current: label } = labelRef;
-      const { current: titleDropdown } = titleDropdownRef;
-      const { current: completionButton } = completionButtonRef;
 
-      if (label.contains(e.target) || titleDropdown.contains(e.target)) return;
+      if (label.contains(e.target) || optionsDropdown.contains(e.target))
+        return;
 
-      if (completionButton.contains(e.target))
+      if (toggleDropdownButton.contains(e.target))
         return setIsDropdownActive(prev => !prev);
 
-      setHoveredTitleIndex(activeTitleIndex);
+      setHoveredOption(activeOption);
       setIsDropdownActive(false);
     };
 
@@ -73,73 +72,74 @@ const CompletionButton = () => {
     };
   });
 
-  const openDropdown = () => {
-    const { current: titleDropdown } = titleDropdownRef;
-    const { current: completionButton } = completionButtonRef;
+  const openOptionsDropdown = () => {
+    const { current: toggleDropdownButton } = toggleDropdownButtonRef;
+    const { current: optionsDropdown } = optionsDropdownRef;
 
-    titleDropdown.classList.add('active');
-    completionButton.classList.add('active');
-    completionButton.classList.remove('Completion-button-hover');
+    toggleDropdownButton.classList.add('active');
+    toggleDropdownButton.classList.remove('Completion-button-hover');
+    optionsDropdown.classList.add('active');
   };
 
-  const closeDropdown = () => {
-    const { current: titleDropdown } = titleDropdownRef;
-    const { current: completionButton } = completionButtonRef;
+  const closeOptionsDropdown = () => {
+    const { current: toggleDropdownButton } = toggleDropdownButtonRef;
+    const { current: optionsDropdown } = optionsDropdownRef;
 
-    titleDropdown.classList.remove('active');
-    completionButton.classList.remove('active');
-    completionButton.classList.add('Completion-button-hover');
-    closeCompletedSinceDropdown();
+    toggleDropdownButton.classList.remove('active');
+    toggleDropdownButton.classList.add('Completion-button-hover');
+    optionsDropdown.classList.remove('active');
+    closeRangesDropdown();
   };
 
-  const openCompletedSinceDropdown = () => {
-    const { current: completedSinceDropdown } = completedSinceDropdownRef;
+  const openRangesDropdown = () => {
+    const { current: rangeDropdown } = rangeDropdownRef;
 
-    completedSinceDropdown.classList.add(
-      activeTitleIndex === 1 ? 'position-right' : 'position-left'
+    rangeDropdown.classList.add(
+      activeOption === 1 ? 'position-right' : 'position-left'
     );
   };
 
-  const closeCompletedSinceDropdown = () => {
-    const { current: completedSinceDropdown } = completedSinceDropdownRef;
+  const closeRangesDropdown = () => {
+    const { current: rangeDropdown } = rangeDropdownRef;
 
-    completedSinceDropdown.classList.remove('position-right', 'position-left');
+    rangeDropdown.classList.remove('position-right', 'position-left');
   };
 
   useEffect(() => {
-    isDropdownActive ? openDropdown() : closeDropdown();
+    isDropdownActive ? openOptionsDropdown() : closeOptionsDropdown();
   }, [isDropdownActive]);
 
   // set active title when completion menu button is hovered
-  const handleHoverTitle = i => {
-    setHoveredTitleIndex(i);
-    i === 1 ? openCompletedSinceDropdown() : closeCompletedSinceDropdown();
+  const handleHoverOnOption = i => {
+    setHoveredOption(i);
+    i === 1 ? openRangesDropdown() : closeRangesDropdown();
+    return;
   };
 
   // hover effects on completion menu buttons
   useEffect(() => {
-    const { current: titleButton } = titleButtonRef;
+    const { current: optionsItems } = optionsItemsRef;
 
-    titleButton.forEach((ref, i) => {
+    optionsItems.forEach((ref, i) => {
       ref.current.style.backgroundColor =
-        i === hoveredTitleIndex
+        i === hoveredOption
           ? i === 1
             ? '#f1f1f1'
             : 'rgba(55, 23, 23, 0.03)'
           : 'white';
     });
-  }, [hoveredTitleIndex]);
+  }, [hoveredOption]);
 
   // render checkmark icon if title is selected
-  const renderTitlesCheckMark = i => {
-    if (activeTitleIndex !== i) {
+  const renderOptionsCheckmark = i => {
+    if (activeOption !== i) {
       return <div className='Completion-button-spacer' />;
     }
     return <CheckMarkIcon />;
   };
 
-  const renderCompletedSinceCheckMark = i => {
-    if (activeCompletedSinceIndex !== i) {
+  const renderRangesCheckmark = i => {
+    if (activeRange !== i) {
       return <div className='Completion-button-spacer' />;
     }
     return <CheckMarkIcon />;
@@ -149,45 +149,45 @@ const CompletionButton = () => {
     <>
       <div className='ThemeableButton-container'>
         <div
-          ref={completionButtonRef}
+          ref={toggleDropdownButtonRef}
           className='Completion-button Completion-button-hover'
         >
           <div>
             <MiniCheckIcon />
           </div>
 
-          <div>{COMPLETION_TITLES[activeTitleIndex]}</div>
+          <div>{OPTIONS[activeOption]}</div>
         </div>
 
-        <div ref={titleDropdownRef} className='Completion-button-dropdown'>
-          {COMPLETION_TITLES.map((title, i) => {
+        <div ref={optionsDropdownRef} className='Completion-button-dropdown'>
+          {OPTIONS.map((option, i) => {
             return (
               <div
                 key={i}
-                ref={titleButtonRef.current[i]}
-                onClick={e => handleSetActiveTitle(e, i)}
-                onMouseEnter={() => handleHoverTitle(i)}
+                ref={optionsItemsRef.current[i]}
+                onClick={e => handleSetActiveOption(e, i)}
+                onMouseEnter={() => handleHoverOnOption(i)}
                 className='Completion-button-dropdown-item'
               >
-                {renderTitlesCheckMark(i)}
-                <span>{title}</span>
+                {renderOptionsCheckmark(i)}
+                <span>{option}</span>
                 {i === 1 && <ArrowRightIcon />}
 
                 {i === 1 && (
                   <div
-                    ref={completedSinceDropdownRef}
+                    ref={rangeDropdownRef}
                     className='Completion-button-dropdown-completed'
                   >
-                    {COMPLETED_SINCE_TITLES.map((title, i) => {
+                    {RANGES.map((range, i) => {
                       return (
                         <div key={i}>
                           <div
-                            ref={completedSinceButtonRef.current[i]}
-                            onClick={() => setActiveCompletedSinceIndex(i)}
+                            ref={rangeItemsRef.current[i]}
+                            onClick={() => setActiveRange(i)}
                             className='Completion-button-dropdown-completed-item'
                           >
-                            {renderCompletedSinceCheckMark(i)}
-                            <span>{title}</span>
+                            {renderRangesCheckmark(i)}
+                            <span>{range}</span>
                           </div>
 
                           {i === 0 && (
