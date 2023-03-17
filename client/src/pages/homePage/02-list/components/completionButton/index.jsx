@@ -19,22 +19,22 @@ const CompletionButton = () => {
   const [hoveredOption, setHoveredOption] = useState(activeOption);
 
   // FIRST LEVEL DROPDOWN
-  const toggleDropdownButtonRef = useRef(null); // main button that toggles dropdown
-  const optionsDropdownRef = useRef(null); // main dropdown
-  const optionsItemsRef = useRef([]); // dropdown items: TASK_COMPLETION_OPTIONS
+  const toggleDropdownButtonRef = useRef(null); // button that toggles dropdown
+  const optionsDropdownRef = useRef(null); // OPTIONS dropdown
+  const optionsItemsRef = useRef([]); // OPTIONS dropdown items
   optionsItemsRef.current = OPTIONS.map(
     (_, i) => optionsItemsRef.current[i] ?? createRef()
   );
 
   // SECOND LEVEL DROPDOWN
-  const rangeDropdownRef = useRef(null); // nested dropdown for 'completed tasks'
-  const rangeItemsRef = useRef([]); // nested dropdown items: DATE_RANGE
+  const rangeDropdownRef = useRef(null); // RANGES nested dropdown for
+  const rangeItemsRef = useRef([]); // RANGES nested dropdown items
   const labelRef = useRef(null); // label: 'Marked completed since:'
   rangeItemsRef.current = RANGES.map(
     (_, i) => rangeItemsRef.current[i] ?? createRef()
   );
 
-  // set active title when completion menu button is clicked
+  // set active OPTION when OPTIONS button is clicked
   const handleSetActiveOption = (e, i) => {
     const { current: label } = labelRef;
     const { current: rangeDropdown } = rangeDropdownRef;
@@ -109,14 +109,14 @@ const CompletionButton = () => {
     isDropdownActive ? openOptionsDropdown() : closeOptionsDropdown();
   }, [isDropdownActive]);
 
-  // set active title when completion menu button is hovered
+  // set active option when OPTIONS' items hovered hovered
   const handleHoverOnOption = i => {
     setHoveredOption(i);
     i === 1 ? openRangesDropdown() : closeRangesDropdown();
     return;
   };
 
-  // hover effects on completion menu buttons
+  // hover effects on RANGES' items
   useEffect(() => {
     const { current: optionsItems } = optionsItemsRef;
 
@@ -132,16 +132,12 @@ const CompletionButton = () => {
 
   // render checkmark icon if title is selected
   const renderOptionsCheckmark = i => {
-    if (activeOption !== i) {
-      return <div className='Completion-button-spacer' />;
-    }
+    if (activeOption !== i) return <div className='Completion-button-spacer' />;
     return <CheckMarkIcon />;
   };
 
   const renderRangesCheckmark = i => {
-    if (activeRange !== i) {
-      return <div className='Completion-button-spacer' />;
-    }
+    if (activeRange !== i) return <div className='Completion-button-spacer' />;
     return <CheckMarkIcon />;
   };
 
