@@ -141,6 +141,14 @@ const CompletionButton = () => {
     return <CheckMarkIcon />;
   };
 
+  useEffect(() => {
+    const { current: rangeItems } = rangeItemsRef;
+
+    rangeItems.forEach((ref, i) => {
+      // console.log(ref.current.textContent);
+    });
+  });
+
   return (
     <>
       <div className='ThemeableButton-container'>
