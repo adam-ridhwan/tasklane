@@ -52,4 +52,59 @@
   fill: #1e1f21;
 }
 
-/* center svg logos */
+/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+
+.centerize {
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  margin-bottom: 24px;
+}
+
+.Animation-test-container1 {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: transparent;
+  height: 28px;
+  width: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.Animation-test-container2 {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: transparent;
+  height: 28px;
+  width: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.Animation-test-container3 {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: transparent;
+  height: 28px;
+  width: 1000px;
+  overflow: hidden;
+  position: relative;
+}
+
+.Animation-test {
+  position: absolute;
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background-image: linear-gradient(to right, black 30%, blue, black 70%);
+  height: 100%;
+  width: 4000px;
+  transform: translateX(-75%);
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateX(-75%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}

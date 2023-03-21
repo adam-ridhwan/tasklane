@@ -73,6 +73,8 @@
   position: relative;
 }
 
+/* nested dropdown ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+
 .Completion-button-dropdown-completed {
   position: absolute;
   top: 0;
