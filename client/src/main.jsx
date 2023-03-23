@@ -6,17 +6,20 @@ import App from './App';
 
 import { AuthProvider } from './context/authContext.jsx';
 import { TodosProvider } from './context/todoContext';
+import { ToolBarProvider } from './context/toolBarContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <TodosProvider>
-        <BrowserRouter>
-          <CookiesProvider>
-            <App />
-          </CookiesProvider>
-        </BrowserRouter>
-      </TodosProvider>
+      <ToolBarProvider>
+        <TodosProvider>
+          <BrowserRouter>
+            <CookiesProvider>
+              <App />
+            </CookiesProvider>
+          </BrowserRouter>
+        </TodosProvider>
+      </ToolBarProvider>
     </AuthProvider>
   </React.StrictMode>
 );

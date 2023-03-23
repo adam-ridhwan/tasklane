@@ -23,7 +23,7 @@ const List = () => {
           </div>
         </div>
       </div>
-      <div className='centerize'>
+      {/* <div className='centerize'>
         <div className='Animation-test-container1'>
           <div className='Animation-test'></div>
         </div>
@@ -39,7 +39,7 @@ const List = () => {
         <div className='Animation-test-container3'>
           <div className='Animation-test'></div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

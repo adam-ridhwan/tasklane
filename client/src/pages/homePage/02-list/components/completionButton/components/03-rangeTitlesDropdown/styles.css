@@ -1,0 +1,64 @@
+.RangeTitlesDropdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 4px 0;
+  border-radius: 4px;
+  background-color: white;
+  color: #1e1f21;
+  box-shadow: 0 0 0 1px #edeae9, 0 5px 20px 0 rgba(109, 110, 111, 0.08);
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  max-width: 500px;
+  min-width: 185px;
+  user-select: none;
+  cursor: pointer;
+  pointer-events: none;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.RangeTitlesDropdown.position-right {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(calc(100% - 6px));
+}
+
+.RangeTitlesDropdown.position-left {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.RangeTitlesDropdown-item {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+
+.RangeTitlesDropdown-item:hover {
+  background-color: rgba(55, 23, 23, 0.03);
+}
+
+.RangeTitlesDropdown-label {
+  line-height: 18px;
+  color: #6d6e6f;
+  padding: 8px 12px 0
+    calc(var(--checkMarkIconWidthAndHeight) + var(--checkMarkMargin) * 2);
+  padding-bottom: 4px;
+  white-space: nowrap;
+  user-select: none;
+  cursor: default;
+}
+
+.RangeTitlesDropdown-spacer {
+  height: calc(var(--checkMarkIconWidthAndHeight) + var(--checkMarkMargin) * 2);
+  width: calc(var(--checkMarkIconWidthAndHeight) + var(--checkMarkMargin) * 2);
+}
+
+.RangeTitlesDropdown-checkMarkIcon {
+  margin: 0 var(--checkMarkMargin);
+  width: var(--checkMarkIconWidthAndHeight);
+  height: var(--checkMarkIconWidthAndHeight);
+}
