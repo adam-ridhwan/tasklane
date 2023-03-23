@@ -81,7 +81,9 @@ const CompletionButton = () => {
     const { current: optionsItems } = completionTitlesItemsRef;
 
     toggleDropdownButton.classList.add('active');
-    toggleDropdownButton.classList.remove('ToggleDropdownButton-hover');
+    toggleDropdownButton.classList.remove(
+      'ToggleCompletionDropdownButton-hover'
+    );
     completionTitlesDropdown.classList.add('active');
     optionsItems[activeOption].current.style.backgroundColor =
       'rgba(55, 23, 23, 0.03)';
@@ -93,7 +95,7 @@ const CompletionButton = () => {
     const { current: optionsItems } = completionTitlesItemsRef;
 
     toggleDropdownButton.classList.remove('active');
-    toggleDropdownButton.classList.add('ToggleDropdownButton-hover');
+    toggleDropdownButton.classList.add('ToggleCompletionDropdownButton-hover');
     completionTitlesDropdown.classList.remove('active');
     optionsItems.forEach(ref => {
       ref.current.style.backgroundColor = 'white';
