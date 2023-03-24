@@ -4,13 +4,13 @@ import { ToolBarContext } from '/src/context/toolBarContext.jsx';
 import './styles.css';
 
 const Button = props => {
-  const { toggleDropdownButtonRef, setIsDropdownActive } = props;
+  const { buttonRef, setIsDropdownActive } = props;
   const { activeOption, COMPLETION_TITLES } = useContext(ToolBarContext);
 
   return (
     <>
       <div
-        ref={toggleDropdownButtonRef}
+        ref={buttonRef}
         onClick={() => setIsDropdownActive(prev => !prev)}
         className='ToggleCompletionDropdownButton ToggleCompletionDropdownButton-hover'
       >

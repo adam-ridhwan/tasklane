@@ -52,7 +52,7 @@ const CompletionButton = () => {
   // toggling dropdown functionality
   useEffect(() => {
     const clickDropdownHandler = e => {
-      const { current: toggleDropdownButton } = buttonRef;
+      const { current: button } = buttonRef;
       const { current: completionTitlesDropdown } = completionTitlesDropdownRef;
       const { current: label } = labelRef;
 
@@ -60,7 +60,7 @@ const CompletionButton = () => {
 
       if (completionTitlesDropdown.contains(e.target)) return;
 
-      if (toggleDropdownButton.contains(e.target))
+      if (button.contains(e.target))
         return !isDropdownActive && openOptionsDropdown();
 
       closeOptionsDropdown();
@@ -75,26 +75,24 @@ const CompletionButton = () => {
   });
 
   const openOptionsDropdown = () => {
-    const { current: toggleDropdownButton } = buttonRef;
+    const { current: button } = buttonRef;
     const { current: completionTitlesDropdown } = completionTitlesDropdownRef;
     const { current: optionsItems } = completionTitlesItemsRef;
 
-    toggleDropdownButton.classList.add('active');
-    toggleDropdownButton.classList.remove(
-      'ToggleCompletionDropdownButton-hover'
-    );
+    button.classList.add('active');
+    button.classList.remove('ToggleCompletionDropdownButton-hover');
     completionTitlesDropdown.classList.add('active');
     optionsItems[activeOption].current.style.backgroundColor =
       'rgba(55, 23, 23, 0.03)';
   };
 
   const closeOptionsDropdown = () => {
-    const { current: toggleDropdownButton } = buttonRef;
+    const { current: button } = buttonRef;
     const { current: completionTitlesDropdown } = completionTitlesDropdownRef;
     const { current: optionsItems } = completionTitlesItemsRef;
 
-    toggleDropdownButton.classList.remove('active');
-    toggleDropdownButton.classList.add('ToggleCompletionDropdownButton-hover');
+    button.classList.remove('active');
+    button.classList.add('ToggleCompletionDropdownButton-hover');
     completionTitlesDropdown.classList.remove('active');
     optionsItems.forEach(ref => {
       ref.current.style.backgroundColor = 'white';
@@ -136,18 +134,22 @@ const CompletionButton = () => {
     <>
       <div className='ThemeableButton-container'>
         <Button
-          toggleDropdownButtonRef={buttonRef}
-          setIsDropdownActive={setIsDropdownActive}
+          {...{
+            buttonRef,
+            setIsDropdownActive,
+          }}
         />
 
         <Dropdown
-          completionTitlesDropdownRef={completionTitlesDropdownRef}
-          completionTitlesItemsRef={completionTitlesItemsRef}
-          rangeTitlesDropdownRef={rangeTitlesDropdownRef}
-          rangeTitlesItemsRef={rangeTitlesItemsRef}
-          labelRef={labelRef}
-          handleSetActiveCompletionTitle={handleSetActiveCompletionTitle}
-          handleHoverOnCompletionTitle={handleHoverOnCompletionTitle}
+          {...{
+            completionTitlesDropdownRef,
+            completionTitlesItemsRef,
+            rangeTitlesDropdownRef,
+            rangeTitlesItemsRef,
+            labelRef,
+            handleSetActiveCompletionTitle,
+            handleHoverOnCompletionTitle,
+          }}
         />
       </div>
     </>

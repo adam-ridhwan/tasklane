@@ -46,9 +46,11 @@ const Dropdown = props => {
 
               {i === 1 && (
                 <NestedDropdown
-                  rangeTitlesDropdownRef={rangeTitlesDropdownRef}
-                  rangeTitlesItemsRef={rangeTitlesItemsRef}
-                  labelRef={labelRef}
+                  {...{
+                    rangeTitlesDropdownRef,
+                    rangeTitlesItemsRef,
+                    labelRef,
+                  }}
                 />
               )}
             </div>
