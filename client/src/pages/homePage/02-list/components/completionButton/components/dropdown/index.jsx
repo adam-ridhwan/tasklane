@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { COMPLETION_TITLES } from '/src/constants/constants.js';
 import { ToolBarContext } from '/src/context/toolBarContext.jsx';
 
 import NestedDropdown from '../nestedDropdown';
@@ -16,11 +17,11 @@ const Dropdown = props => {
     handleHoverOnCompletionTitle,
   } = props;
 
-  const { COMPLETION_TITLES, activeOption } = useContext(ToolBarContext);
+  const { activeCompletionTitle } = useContext(ToolBarContext);
 
   // render checkmark icon if title is selected
   const renderCheckmark = i => {
-    if (activeOption !== i)
+    if (activeCompletionTitle !== i)
       return <div className='CompletionTitlesDropdown-spacer' />;
     return <CheckMarkIcon />;
   };

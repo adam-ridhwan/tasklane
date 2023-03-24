@@ -1,4 +1,4 @@
-.ToggleCompletionDropdownButton {
+.CompletionButton {
   user-select: none;
   color: #6d6e6f;
   fill: #6d6e6f;
@@ -19,24 +19,24 @@
   transition-property: background, color, fill;
 }
 
-.ToggleCompletionDropdownButton.active {
+.CompletionButton.active {
   background: rgba(55, 23, 23, 0.05);
   color: #1e1f21;
   fill: #1e1f21;
 }
 
-.ToggleCompletionDropdownButton-hover:hover {
+.CompletionButton-hover:hover {
   background: rgba(55, 23, 23, 0.03);
   color: #1e1f21;
   fill: #1e1f21;
 }
 
-.ToggleCompletionDropdownButton-miniCheckIconContainer {
+.CompletionButton-miniCheckIconContainer {
   display: flex;
   align-items: center;
 }
 
-.ToggleCompletionDropdownButton-miniCheckIcon {
+.CompletionButton-miniCheckIcon {
   height: 12px;
   width: 12px;
 }

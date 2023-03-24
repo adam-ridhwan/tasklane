@@ -1,4 +1,5 @@
 import { createRef, useContext, useEffect, useRef, useState } from 'react';
+import { COMPLETION_TITLES, RANGE_TITLES } from '/src/constants/constants.js';
 import { ToolBarContext } from '/src/context/toolBarContext.jsx';
 
 import Button from './components/button';
@@ -8,17 +9,16 @@ import './styles.css';
 
 const CompletionButton = () => {
   const {
-    activeOption,
-    setActiveOption,
-    setActiveRange,
-    COMPLETION_TITLES,
-    RANGE_TITLES,
+    activeCompletionTitle,
+    setActiveCompletionTitle,
+    setActiveRangeTitle,
   } = useContext(ToolBarContext);
 
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
-  // FIRST LEVEL DROPDOWN
   const buttonRef = useRef(null); // button that toggles dropdown
+
+  // FIRST LEVEL DROPDOWN
   const completionTitlesDropdownRef = useRef(null); // COMPLETION_TITLES dropdown
   const completionTitlesItemsRef = useRef([]); // COMPLETION_TITLES dropdown items
   completionTitlesItemsRef.current = COMPLETION_TITLES.map(
@@ -40,13 +40,13 @@ const CompletionButton = () => {
 
     if (label.contains(e.target)) return;
 
-    setActiveOption(i);
+    setActiveCompletionTitle(i);
     closeOptionsDropdown();
     setIsDropdownActive(false);
 
-    if (i !== 1) return setActiveRange(null);
+    if (i !== 1) return setActiveRangeTitle(null);
 
-    if (!rangeTitlesDropdown.contains(e.target)) return setActiveRange(0);
+    if (!rangeTitlesDropdown.contains(e.target)) return setActiveRangeTitle(0);
   };
 
   // toggling dropdown functionality
@@ -77,24 +77,24 @@ const CompletionButton = () => {
   const openOptionsDropdown = () => {
     const { current: button } = buttonRef;
     const { current: completionTitlesDropdown } = completionTitlesDropdownRef;
-    const { current: optionsItems } = completionTitlesItemsRef;
+    const { current: completionTitlesItems } = completionTitlesItemsRef;
 
     button.classList.add('active');
-    button.classList.remove('ToggleCompletionDropdownButton-hover');
+    button.classList.remove('CompletionButton-hover');
     completionTitlesDropdown.classList.add('active');
-    optionsItems[activeOption].current.style.backgroundColor =
+    completionTitlesItems[activeCompletionTitle].current.style.backgroundColor =
       'rgba(55, 23, 23, 0.03)';
   };
 
   const closeOptionsDropdown = () => {
     const { current: button } = buttonRef;
     const { current: completionTitlesDropdown } = completionTitlesDropdownRef;
-    const { current: optionsItems } = completionTitlesItemsRef;
+    const { current: completionTitlesItems } = completionTitlesItemsRef;
 
     button.classList.remove('active');
-    button.classList.add('ToggleCompletionDropdownButton-hover');
+    button.classList.add('CompletionButton-hover');
     completionTitlesDropdown.classList.remove('active');
-    optionsItems.forEach(ref => {
+    completionTitlesItems.forEach(ref => {
       ref.current.style.backgroundColor = 'white';
     });
     closeRangesDropdown();
@@ -104,7 +104,7 @@ const CompletionButton = () => {
     const { current: rangeTitlesDropdown } = rangeTitlesDropdownRef;
 
     rangeTitlesDropdown.classList.add(
-      activeOption === 1 ? 'position-right' : 'position-left'
+      activeCompletionTitle === 1 ? 'position-right' : 'position-left'
     );
   };
 
@@ -116,13 +116,13 @@ const CompletionButton = () => {
 
   // set active option when OPTIONS' items hovered hovered
   const handleHoverOnCompletionTitle = i => {
-    const { current: optionsItems } = completionTitlesItemsRef;
+    const { current: completionTitlesItems } = completionTitlesItemsRef;
 
-    optionsItems.forEach(ref => {
+    completionTitlesItems.forEach(ref => {
       ref.current.style.backgroundColor = 'white';
     });
 
-    optionsItems[i].current.style.backgroundColor =
+    completionTitlesItems[i].current.style.backgroundColor =
       i === 1 ? '#f1f1f1' : 'rgba(55, 23, 23, 0.03)';
 
     i === 1 ? openRangesDropdown() : closeRangesDropdown();

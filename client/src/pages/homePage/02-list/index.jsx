@@ -1,5 +1,5 @@
 import AddTaskButton from './components/addTaskButton/index.jsx';
-import CompletionButton from './components/completionButton/index.jsx';
+import CompletionButton from './components/CompletionButton/index.jsx';
 import CustomizeButton from './components/customizeButton/index.jsx';
 import SortButton from './components/sortButton/index.jsx';
 import Header from '/src/layouts/header/index.jsx';

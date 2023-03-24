@@ -1,24 +1,26 @@
 import { useContext } from 'react';
 import { ToolBarContext } from '/src/context/toolBarContext.jsx';
 
+import { COMPLETION_TITLES } from '/src/constants/constants.js';
+
 import './styles.css';
 
 const Button = props => {
   const { buttonRef, setIsDropdownActive } = props;
-  const { activeOption, COMPLETION_TITLES } = useContext(ToolBarContext);
+  const { activeCompletionTitle } = useContext(ToolBarContext);
 
   return (
     <>
       <div
         ref={buttonRef}
         onClick={() => setIsDropdownActive(prev => !prev)}
-        className='ToggleCompletionDropdownButton ToggleCompletionDropdownButton-hover'
+        className='CompletionButton CompletionButton-hover'
       >
-        <div className='ToggleCompletionDropdownButton-miniCheckIconContainer'>
+        <div className='CompletionButton-miniCheckIconContainer'>
           <MiniCheckIcon />
         </div>
 
-        <div>{COMPLETION_TITLES[activeOption]}</div>
+        <div>{COMPLETION_TITLES[activeCompletionTitle]}</div>
       </div>
     </>
   );
@@ -30,7 +32,7 @@ const MiniCheckIcon = () => {
   return (
     <>
       <svg
-        className='ToggleCompletionDropdownButton-miniCheckIcon'
+        className='CompletionButton-miniCheckIcon'
         viewBox='0 0 24 24'
         aria-hidden='true'
         focusable='false'

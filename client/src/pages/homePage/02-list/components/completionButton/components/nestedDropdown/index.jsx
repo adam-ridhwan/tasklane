@@ -1,15 +1,15 @@
 import { useContext } from 'react';
+import { RANGE_TITLES } from '/src/constants/constants.js';
 import { ToolBarContext } from '/src/context/toolBarContext.jsx';
 
 import './styles.css';
 
 const NestedDropdown = props => {
   const { rangeTitlesDropdownRef, rangeTitlesItemsRef, labelRef } = props;
-  const { RANGE_TITLES, activeRange, setActiveRange } =
-    useContext(ToolBarContext);
+  const { activeRangeTitle, setActiveRangeTitle } = useContext(ToolBarContext);
 
   const renderCheckmark = i => {
-    if (activeRange !== i)
+    if (activeRangeTitle !== i)
       return <div className='RangeTitlesDropdown-spacer' />;
     return <CheckMarkIcon />;
   };
@@ -22,7 +22,7 @@ const NestedDropdown = props => {
             <div key={i}>
               <div
                 ref={rangeTitlesItemsRef.current[i]}
-                onClick={() => setActiveRange(i)}
+                onClick={() => setActiveRangeTitle(i)}
                 className='RangeTitlesDropdown-item'
               >
                 {renderCheckmark(i)}
