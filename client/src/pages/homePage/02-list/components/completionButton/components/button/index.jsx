@@ -3,7 +3,7 @@ import { ToolBarContext } from '/src/context/toolBarContext.jsx';
 
 import './styles.css';
 
-const ToggleCompletionDropdownButton = props => {
+const Button = props => {
   const { toggleDropdownButtonRef, setIsDropdownActive } = props;
   const { activeOption, COMPLETION_TITLES } = useContext(ToolBarContext);
 
@@ -24,7 +24,7 @@ const ToggleCompletionDropdownButton = props => {
   );
 };
 
-export default ToggleCompletionDropdownButton;
+export default Button;
 
 const MiniCheckIcon = () => {
   return (

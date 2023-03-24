@@ -1,9 +1,8 @@
 import { createRef, useContext, useEffect, useRef, useState } from 'react';
 import { ToolBarContext } from '/src/context/toolBarContext.jsx';
 
-import ToggleCompletionDropdownButton from './components/01-ToggleCompletionDropdownButton';
-import CompletionTitlesDropdown from './components/02-completionTitlesDropdown';
-import RangeTitlesDropdown from './components/03-rangeTitlesDropdown';
+import Button from './components/button';
+import Dropdown from './components/dropdown';
 
 import './styles.css';
 
@@ -19,7 +18,7 @@ const CompletionButton = () => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
   // FIRST LEVEL DROPDOWN
-  const toggleDropdownButtonRef = useRef(null); // button that toggles dropdown
+  const buttonRef = useRef(null); // button that toggles dropdown
   const completionTitlesDropdownRef = useRef(null); // COMPLETION_TITLES dropdown
   const completionTitlesItemsRef = useRef([]); // COMPLETION_TITLES dropdown items
   completionTitlesItemsRef.current = COMPLETION_TITLES.map(
@@ -53,7 +52,7 @@ const CompletionButton = () => {
   // toggling dropdown functionality
   useEffect(() => {
     const clickDropdownHandler = e => {
-      const { current: toggleDropdownButton } = toggleDropdownButtonRef;
+      const { current: toggleDropdownButton } = buttonRef;
       const { current: completionTitlesDropdown } = completionTitlesDropdownRef;
       const { current: label } = labelRef;
 
@@ -76,7 +75,7 @@ const CompletionButton = () => {
   });
 
   const openOptionsDropdown = () => {
-    const { current: toggleDropdownButton } = toggleDropdownButtonRef;
+    const { current: toggleDropdownButton } = buttonRef;
     const { current: completionTitlesDropdown } = completionTitlesDropdownRef;
     const { current: optionsItems } = completionTitlesItemsRef;
 
@@ -90,7 +89,7 @@ const CompletionButton = () => {
   };
 
   const closeOptionsDropdown = () => {
-    const { current: toggleDropdownButton } = toggleDropdownButtonRef;
+    const { current: toggleDropdownButton } = buttonRef;
     const { current: completionTitlesDropdown } = completionTitlesDropdownRef;
     const { current: optionsItems } = completionTitlesItemsRef;
 
@@ -136,19 +135,19 @@ const CompletionButton = () => {
   return (
     <>
       <div className='ThemeableButton-container'>
-        <ToggleCompletionDropdownButton
-          toggleDropdownButtonRef={toggleDropdownButtonRef}
+        <Button
+          toggleDropdownButtonRef={buttonRef}
           setIsDropdownActive={setIsDropdownActive}
         />
 
-        <CompletionTitlesDropdown
+        <Dropdown
           completionTitlesDropdownRef={completionTitlesDropdownRef}
           completionTitlesItemsRef={completionTitlesItemsRef}
           rangeTitlesDropdownRef={rangeTitlesDropdownRef}
           rangeTitlesItemsRef={rangeTitlesItemsRef}
+          labelRef={labelRef}
           handleSetActiveCompletionTitle={handleSetActiveCompletionTitle}
           handleHoverOnCompletionTitle={handleHoverOnCompletionTitle}
-          labelRef={labelRef}
         />
       </div>
     </>

@@ -3,7 +3,7 @@ import { ToolBarContext } from '/src/context/toolBarContext.jsx';
 
 import './styles.css';
 
-const RangeTitlesDropdown = props => {
+const NestedDropdown = props => {
   const { rangeTitlesDropdownRef, rangeTitlesItemsRef, labelRef } = props;
   const { RANGE_TITLES, activeRange, setActiveRange } =
     useContext(ToolBarContext);
@@ -42,7 +42,7 @@ const RangeTitlesDropdown = props => {
   );
 };
 
-export default RangeTitlesDropdown;
+export default NestedDropdown;
 
 const CheckMarkIcon = () => {
   return (

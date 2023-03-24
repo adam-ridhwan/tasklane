@@ -1,10 +1,11 @@
 import { useContext } from 'react';
-import RangeTitlesDropdown from '../03-rangeTitlesDropdown';
 import { ToolBarContext } from '/src/context/toolBarContext.jsx';
+
+import NestedDropdown from '../nestedDropdown';
 
 import './styles.css';
 
-const CompletionTitlesDropdown = props => {
+const Dropdown = props => {
   const {
     completionTitlesDropdownRef,
     completionTitlesItemsRef,
@@ -44,7 +45,7 @@ const CompletionTitlesDropdown = props => {
               {i === 1 && <ArrowRightIcon />}
 
               {i === 1 && (
-                <RangeTitlesDropdown
+                <NestedDropdown
                   rangeTitlesDropdownRef={rangeTitlesDropdownRef}
                   rangeTitlesItemsRef={rangeTitlesItemsRef}
                   labelRef={labelRef}
@@ -58,7 +59,7 @@ const CompletionTitlesDropdown = props => {
   );
 };
 
-export default CompletionTitlesDropdown;
+export default Dropdown;
 
 const CheckMarkIcon = () => {
   return (
