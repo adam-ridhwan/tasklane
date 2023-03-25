@@ -41,7 +41,6 @@ const CompletionButton = () => {
     if (label.contains(e.target)) return;
 
     setActiveCompletionTitle(i);
-    closeOptionsDropdown();
     setIsDropdownActive(false);
 
     if (i !== 1) return setActiveRangeTitle(null);
@@ -54,18 +53,10 @@ const CompletionButton = () => {
     const clickDropdownHandler = e => {
       const { current: button } = buttonRef;
       const { current: completionTitlesDropdown } = completionTitlesDropdownRef;
-      const { current: label } = labelRef;
-
-      if (label.contains(e.target)) return;
 
       if (completionTitlesDropdown.contains(e.target)) return;
 
-      if (button.contains(e.target))
-        return !isDropdownActive && openOptionsDropdown();
-
-      closeOptionsDropdown();
-      setIsDropdownActive(false);
-      return;
+      if (!button.contains(e.target)) return setIsDropdownActive(false);
     };
 
     document.addEventListener('mousedown', clickDropdownHandler);
@@ -73,6 +64,10 @@ const CompletionButton = () => {
       document.removeEventListener('mousedown', clickDropdownHandler);
     };
   });
+
+  useEffect(() => {
+    isDropdownActive ? openOptionsDropdown() : closeOptionsDropdown();
+  }, [isDropdownActive]);
 
   const openOptionsDropdown = () => {
     const { current: button } = buttonRef;

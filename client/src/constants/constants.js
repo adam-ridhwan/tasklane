@@ -12,3 +12,14 @@ export const RANGE_TITLES = [
   '2 weeks',
   '3 weeks',
 ];
+
+export const SORT_TITLES = [
+  'None',
+  'Start Date',
+  'Due Date',
+  'Created by',
+  'Created on',
+  'Last modified on',
+  'Completed on',
+  'Alphabetical',
+];

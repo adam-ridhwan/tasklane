@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import './styles.css';
 
-const sortTitles = [
+const SORT_TITLES = [
   'None',
   'Start Date',
   'Due Date',
@@ -13,7 +13,7 @@ const sortTitles = [
 ];
 
 const CustomizeButton = () => {
-  const [selectedOption, setSelectedOption] = useState(sortTitles[0]);
+  const [selectedOption, setSelectedOption] = useState(SORT_TITLES[0]);
 
   return (
     <>

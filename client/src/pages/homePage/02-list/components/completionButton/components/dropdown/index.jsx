@@ -37,7 +37,7 @@ const Dropdown = props => {
             <div
               key={i}
               ref={completionTitlesItemsRef.current[i]}
-              className='CompletionTitlesDropdown-item '
+              className='CompletionTitlesDropdown-item'
               onClick={e => handleSetActiveCompletionTitle(e, i)}
               onMouseEnter={() => handleHoverOnCompletionTitle(i)}
             >
