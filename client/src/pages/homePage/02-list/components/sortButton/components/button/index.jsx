@@ -6,7 +6,7 @@ const Button = prop => {
   return (
     <>
       <div className='SortButton SortButton-hover'>
-        <div>
+        <div className='SortButton-sortIconContainer'>
           <SortIcon />
         </div>
 

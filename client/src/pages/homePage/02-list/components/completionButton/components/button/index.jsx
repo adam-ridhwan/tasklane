@@ -13,7 +13,7 @@ const Button = props => {
     <>
       <div
         ref={buttonRef}
-        onClick={() => setIsDropdownActive(prev => !prev)}
+        onClick={() => setIsDropdownActive(prev => !prev)} // toggle dropdown
         className='CompletionButton CompletionButton-hover'
       >
         <div className='CompletionButton-miniCheckIconContainer'>

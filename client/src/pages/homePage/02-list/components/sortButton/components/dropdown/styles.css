@@ -1,8 +1,9 @@
 .SortTitlesDropdown {
   position: absolute;
-  top: 43px;
+  top: 44px;
   left: 0;
-  padding: 4px 0;
+  padding-top: 4px;
+  padding-bottom: 4px;
   border-radius: 4px;
   background-color: white;
   color: #1e1f21;
@@ -10,11 +11,10 @@
   display: flex;
   flex-direction: column;
   font-size: 14px;
-  max-width: 500px;
-  min-width: 185px;
+  min-width: max-content;
   user-select: none;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 1;
   pointer-events: none;
 }
 
@@ -24,9 +24,10 @@
 }
 
 .SortTitlesDropdown-item {
-  height: 36px;
+  height: 38px;
   display: flex;
   align-items: center;
+  padding-right: 42px;
 }
 
 /* spacer for inactive checkmark icon */
@@ -39,12 +40,5 @@
   margin: 0 var(--checkMarkMargin);
   width: var(--checkMarkIconWidthAndHeight);
   height: var(--checkMarkIconWidthAndHeight);
-}
-
-.SortTitlesDropdown-arrowRightIcon {
-  width: 16px;
-  height: 16px;
-  margin-left: auto;
-  margin-right: 5px;
-  fill: #1e1f21;
+  fill: #6d6e6f;
 }

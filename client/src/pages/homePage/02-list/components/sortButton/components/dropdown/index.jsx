@@ -4,13 +4,13 @@ import './styles.css';
 
 const Dropdown = () => {
   const renderCheckmark = i => {
-    if (3 !== i) return <div className='SortTitlesDropdown-spacer' />;
+    if (0 !== i) return <div className='SortTitlesDropdown-spacer' />;
     return <CheckMarkIcon />;
   };
 
   return (
     <>
-      {/* <div className='SortTitlesDropdown'>
+      <div className='SortTitlesDropdown'>
         {SORT_TITLES.map((title, i) => {
           return (
             <div key={i} className='SortTitlesDropdown-item'>
@@ -19,7 +19,7 @@ const Dropdown = () => {
             </div>
           );
         })}
-      </div> */}
+      </div>
     </>
   );
 };
@@ -30,7 +30,7 @@ const CheckMarkIcon = () => {
   return (
     <>
       <svg
-        className='CompletionTitlesDropdown-checkMarkIcon'
+        className='SortTitlesDropdown-checkMarkIcon'
         viewBox='0 0 32 32'
         aria-hidden='true'
         focusable='false'
