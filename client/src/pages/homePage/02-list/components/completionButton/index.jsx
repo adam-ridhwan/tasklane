@@ -48,7 +48,7 @@ const CompletionButton = () => {
     if (!rangeTitlesDropdown.contains(e.target)) return setActiveRangeTitle(0);
   };
 
-  // toggling dropdown functionality
+  // click handler for toggling dropdown
   useEffect(() => {
     const clickDropdownHandler = e => {
       const { current: button } = buttonRef;
@@ -65,6 +65,7 @@ const CompletionButton = () => {
     };
   });
 
+  // toggling dropdown functionality
   useEffect(() => {
     isDropdownActive ? openOptionsDropdown() : closeOptionsDropdown();
   }, [isDropdownActive]);
