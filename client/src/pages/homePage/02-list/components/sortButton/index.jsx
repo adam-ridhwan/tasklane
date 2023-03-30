@@ -72,9 +72,9 @@ const SortButton = () => {
   const handleHoverOnSortTitle = i => {
     const { current: sortTitlesItems } = sortTitlesItemsRef;
 
-    sortTitlesItems.forEach(ref => {
-      ref.current.style.backgroundColor = 'white';
-    });
+    sortTitlesItems.forEach(
+      ref => (ref.current.style.backgroundColor = 'white')
+    );
 
     sortTitlesItems[i].current.style.backgroundColor = 'rgba(55, 23, 23, 0.03)';
 

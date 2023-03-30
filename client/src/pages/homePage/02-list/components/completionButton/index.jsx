@@ -12,7 +12,6 @@ const CompletionButton = () => {
     activeCompletionTitle,
     setActiveCompletionTitle,
     setActiveRangeTitle,
-    activeSortTitle,
     setActiveSortTitle,
   } = useContext(ToolBarContext);
 
