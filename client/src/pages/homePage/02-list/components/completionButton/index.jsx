@@ -12,6 +12,8 @@ const CompletionButton = () => {
     activeCompletionTitle,
     setActiveCompletionTitle,
     setActiveRangeTitle,
+    activeSortTitle,
+    setActiveSortTitle,
   } = useContext(ToolBarContext);
 
   const [isDropdownActive, setIsDropdownActive] = useState(false);
@@ -41,6 +43,7 @@ const CompletionButton = () => {
     if (label.contains(e.target)) return;
 
     setActiveCompletionTitle(i);
+    i === 1 ? setActiveSortTitle(6) : setActiveSortTitle(0);
     setIsDropdownActive(false);
 
     if (i !== 1) return setActiveRangeTitle(null);
