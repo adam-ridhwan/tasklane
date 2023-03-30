@@ -1,19 +1,37 @@
+import { useContext } from 'react';
 import { SORT_TITLES } from '/src/constants/constants.js';
+import { ToolBarContext } from '/src/context/toolBarContext.jsx';
 
 import './styles.css';
 
-const Dropdown = () => {
+const Dropdown = props => {
+  const {
+    sortTitlesDropdownRef,
+    sortTitlesItemsRef,
+    handleSetActiveSortTitle,
+    handleHoverOnSortTitle,
+  } = props;
+
+  const { activeSortTitle } = useContext(ToolBarContext);
+
   const renderCheckmark = i => {
-    if (0 !== i) return <div className='SortTitlesDropdown-spacer' />;
+    if (activeSortTitle !== i)
+      return <div className='SortTitlesDropdown-spacer' />;
     return <CheckMarkIcon />;
   };
 
   return (
     <>
-      <div className='SortTitlesDropdown'>
+      <div ref={sortTitlesDropdownRef} className='SortTitlesDropdown'>
         {SORT_TITLES.map((title, i) => {
           return (
-            <div key={i} className='SortTitlesDropdown-item'>
+            <div
+              key={i}
+              ref={sortTitlesItemsRef.current[i]}
+              className='SortTitlesDropdown-item'
+              onClick={() => handleSetActiveSortTitle(i)}
+              onMouseEnter={() => handleHoverOnSortTitle(i)}
+            >
               {renderCheckmark(i)}
               <span>{title}</span>
             </div>

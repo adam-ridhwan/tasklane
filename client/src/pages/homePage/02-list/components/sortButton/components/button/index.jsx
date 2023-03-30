@@ -1,16 +1,24 @@
+import { SORT_TITLES } from '/src/constants/constants.js';
+
 import './styles.css';
 
 const Button = prop => {
-  const { selectedOption } = prop;
+  const { buttonRef, activeSortTitle, setIsDropdownOpen } = prop;
 
   return (
     <>
-      <div className='SortButton SortButton-hover'>
+      <div
+        ref={buttonRef}
+        className='SortButton SortButton-hover'
+        onClick={() => setIsDropdownOpen(prev => !prev)} // toggle dropdown
+      >
         <div className='SortButton-sortIconContainer'>
           <SortIcon />
         </div>
 
-        <div>Sort{selectedOption !== 'None' && `: ${selectedOption}`}</div>
+        <div>
+          Sort{activeSortTitle !== 0 && `: ${SORT_TITLES[activeSortTitle]}`}
+        </div>
       </div>
     </>
   );

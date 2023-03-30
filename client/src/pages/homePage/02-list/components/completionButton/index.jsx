@@ -67,10 +67,10 @@ const CompletionButton = () => {
 
   // toggling dropdown functionality
   useEffect(() => {
-    isDropdownActive ? openOptionsDropdown() : closeOptionsDropdown();
+    isDropdownActive ? openCompletionsDropdown() : closeCompletionsDropdown();
   }, [isDropdownActive]);
 
-  const openOptionsDropdown = () => {
+  const openCompletionsDropdown = () => {
     const { current: button } = buttonRef;
     const { current: completionTitlesDropdown } = completionTitlesDropdownRef;
     const { current: completionTitlesItems } = completionTitlesItemsRef;
@@ -82,7 +82,7 @@ const CompletionButton = () => {
       'rgba(55, 23, 23, 0.03)';
   };
 
-  const closeOptionsDropdown = () => {
+  const closeCompletionsDropdown = () => {
     const { current: button } = buttonRef;
     const { current: completionTitlesDropdown } = completionTitlesDropdownRef;
     const { current: completionTitlesItems } = completionTitlesItemsRef;
