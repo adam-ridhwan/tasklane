@@ -8,6 +8,7 @@ import './styles.css';
 
 const SortButton = () => {
   const [selectedOption, setSelectedOption] = useState(SORT_TITLES[0]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <>

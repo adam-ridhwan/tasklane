@@ -11,7 +11,6 @@ const Dropdown = () => {
   return (
     <>
       <div className='SortTitlesDropdown'>
-        {/* map through SORT_TITLES */}
         {SORT_TITLES.map((title, i) => {
           return (
             <div key={i} className='SortTitlesDropdown-item'>
