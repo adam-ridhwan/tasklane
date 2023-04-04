@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import MiniArrowDownIcon from '/src/assets/svg/miniArrowDownIcon';
 import MiniPlusIcon from '/src/assets/svg/miniPlusIcon';
 
+import useCreateTodo from '/src/pages/homePage/hooks/useCreateTodo.jsx';
+
 import './styles.css';
 
 const AddTaskButton = () => {
@@ -10,6 +12,12 @@ const AddTaskButton = () => {
 
   const buttonRef = useRef(null);
   const dropdownRef = useRef(null);
+
+  const createTodo = useCreateTodo();
+
+  const handleCreateTodo = () => {
+    createTodo('test');
+  };
 
   useEffect(() => {
     const clickHandler = e => {
@@ -50,7 +58,7 @@ const AddTaskButton = () => {
   return (
     <>
       <div className='AddTaskButton-container'>
-        <div className='AddTaskButton-button'>
+        <div className='AddTaskButton-button' onClick={handleCreateTodo}>
           <div>
             <MiniPlusIcon />
           </div>

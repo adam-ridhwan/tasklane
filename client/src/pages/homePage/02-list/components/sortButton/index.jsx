@@ -11,7 +11,7 @@ const SortButton = () => {
   const { activeSortTitle, setActiveSortTitle } = useContext(ToolBarContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const buttonRef = useRef(null);
+  const buttonRef = useRef(null); // sort button
 
   const sortTitlesDropdownRef = useRef(null); // SORT_TITLES dropdown
   const sortTitlesItemsRef = useRef([]); // SORT_TITLES dropdown items

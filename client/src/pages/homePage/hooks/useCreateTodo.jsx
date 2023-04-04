@@ -1,16 +1,16 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/authContext.jsx';
-import { TodosContext } from '../context/todoContext.jsx';
-import verifyJWTExp from '../utils/verifyJWTExp.jsx';
+import { AuthContext } from '/src/context/authContext.jsx';
+import { TodosContext } from '/src/context/todoContext.jsx';
+import verifyJWTExp from '/src/utils/verifyJWTExp.jsx';
 
-const CreateTodo = () => {
+const useCreateTodo = () => {
   const navigate = useNavigate();
 
   const { accessToken, setAccessToken } = useContext(AuthContext);
   const { todos, setTodos } = useContext(TodosContext);
 
-  const createTodoHandler = async () => {
+  const createTodo = async () => {
     const token = await verifyJWTExp(accessToken, setAccessToken);
     if (!token) return navigate('/login');
 
@@ -30,15 +30,7 @@ const CreateTodo = () => {
     setTodos([...todos, newTodo[0]]);
   };
 
-  useEffect(() => {
-    console.log(todos);
-  }, [todos]);
-
-  return (
-    <>
-      <button onClick={() => createTodoHandler()}>Create Todo</button>
-    </>
-  );
+  return createTodo;
 };
 
-export default CreateTodo;
+export default useCreateTodo;
